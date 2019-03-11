@@ -17,22 +17,20 @@
  */
 //</editor-fold>
 
-package javaparainiciantes.es;
-
-import javax.swing.JPanel;
+package conteudojanelapersonalizada;
 
 /**
- * Descrição de <code>PainelConteudo</code>.
+ * Descrição de <code>FonteTexto</code>.
  * <dl>
  * <dd>• Ponto 1: "abc";
  * </dl>
  * 
- * <br><br><small>Criado em: 06/03/2019</small>
+ * <br><br><small>Criado em: 10/03/2019</small>
  *
  * @author Tiago Penha Pedroso
  * @version 1.0
  */
-public class PainelConteudo extends JPanel{
+public class FonteTexto {
     
     //
 

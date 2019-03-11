@@ -17,25 +17,37 @@
  */
 //</editor-fold>
 
-package javaparainiciantes;
+package conteudojanelapersonalizada.padroesprojeto;
 
 /**
- * Descrição de <code>NewMain</code>.
+ * Descrição de <code>Dimensionavel</code>.
  * <dl>
  * <dd>• Ponto 1: "abc";
  * </dl>
  * 
- * <br><br><small>Criado em: 06/03/2019</small>
+ * <br><br><small>Criado em: 10/03/2019</small>
  *
  * @author Tiago Penha Pedroso
  * @version 1.0
  */
-public class NewMain {
+public interface Dimensionavel {
+    
+    public void setDimensao(Integer novoComprimento, Integer novaAltura);
+    
+    public void setDimensaoComprimento(Integer novoComprimento);
+    
+    public void setDimensaoAltura(Integer novaAltura);
+    
+    public void incrementarDimensao(Integer valorIncrementoComprimentoAltura);
+    
+    public void incrementarDimensao(Integer valorIncrementoComprimento, Integer valorIncrementoAltura);
+    
+    public void incrementarDimensaoComprimento(Integer valorIncremento);
+    
+    public void incrementarDimensaoAltura(Integer valorIncremento);
+    
+    public Integer getDimensaoComprimento();
 
-    public static void main(String[] args) {
-
-        //
-
-    }
-
+    public Integer getDimensaoAltura();
+    
 }

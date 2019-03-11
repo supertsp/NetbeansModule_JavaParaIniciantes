@@ -17,14 +17,23 @@
  */
 //</editor-fold>
 
-package javaparainiciantes;
+package conteudojanelapersonalizada.padroesprojeto;
 
-public class NewMain1 {
+import java.awt.Graphics2D;
 
-    public static void main(String[] args) {
-
-        //
-
-    }
-
+/**
+ * Descrição de <code>Desenhavel</code>.
+ * <dl>
+ * <dd>• Ponto 1: "abc";
+ * </dl>
+ * 
+ * <br><br><small>Criado em: 10/03/2019</small>
+ *
+ * @author Tiago Penha Pedroso
+ * @version 1.0
+ */
+public interface Desenhavel {
+    
+    public void desenhar(Graphics2D pincelDesenho);
+    
 }

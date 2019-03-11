@@ -16,14 +16,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 //</editor-fold>
-package javaparainiciantes.es;
+package entradasaida;
 
 import java.math.BigDecimal;
-import java.util.Scanner;
+import static javax.swing.JOptionPane.*;
 
 /**
  * Classe com métodos estáticos que facilitam as operações de "leitura" e
- * "escrita" (E/S) de variáveis via console. Os tipos de dados compatíveis são:
+ * "escrita" (E/S) de variáveis via Janela Popup. Os tipos de dados compatíveis
+ * são:
  * <dl>
  * <dd>• <code>String</code>: dado (objeto) do tipo texto. Ex.: "abc";
  * <dd>• <code>Character</code>: dado (objeto) do tipo texto (apenas uma letra)
@@ -44,7 +45,7 @@ import java.util.Scanner;
  * @author Tiago Penha Pedroso
  * @version 1.0
  */
-public class Console {
+public class JanelaPopup {
 
     // <editor-fold defaultstate="collapsed" desc="Constantes String NOVA_LINHA_**">
     /**
@@ -98,8 +99,6 @@ public class Console {
     public static final String NOVA_LINHA_10 = "\n\n\n\n\n\n\n\n\n\n";
     // </editor-fold>
 
-    private static Scanner leitura = new Scanner(System.in);
-
     // <editor-fold defaultstate="collapsed" desc="lerString(String mensagemParaUsuario) : String|null">
     /**
      * Executa a operção de "leitura" de uma variável (objeto) do tipo
@@ -109,10 +108,13 @@ public class Console {
      * @return A <code>String</code> lida ou <code>null</code> em caso de erro.
      */
     public static String lerString(String mensagemParaUsuario) {
-        System.out.print(mensagemParaUsuario);
-
         try {
-            return leitura.nextLine();
+            return showInputDialog(
+                    null,
+                    mensagemParaUsuario,
+                    "Janela para Leitura de String",
+                    PLAIN_MESSAGE
+            );
         } catch (Exception e) {
             return null;
         }
@@ -141,10 +143,13 @@ public class Console {
      * @return A <code>String</code> lida ou <code>null</code> em caso de erro.
      */
     public static String lerString(String mensagemParaUsuario, Object... variaveisDeSubstituicao) {
-        System.out.print(String.format(mensagemParaUsuario, variaveisDeSubstituicao));
-
         try {
-            return leitura.nextLine();
+            return showInputDialog(
+                    null,
+                    String.format(mensagemParaUsuario, variaveisDeSubstituicao),
+                    "Janela para Leitura de String",
+                    PLAIN_MESSAGE
+            );
         } catch (Exception e) {
             return null;
         }
@@ -161,10 +166,13 @@ public class Console {
      * erro.
      */
     public static Character lerCharacter(String mensagemParaUsuario) {
-        System.out.print(mensagemParaUsuario);
-
         try {
-            return leitura.nextLine().charAt(0);
+            return showInputDialog(
+                    null,
+                    mensagemParaUsuario,
+                    "Janela para Leitura de Character",
+                    PLAIN_MESSAGE
+            ).charAt(0);
         } catch (Exception e) {
             return null;
         }
@@ -194,10 +202,13 @@ public class Console {
      * erro.
      */
     public static Character lerCharacter(String mensagemParaUsuario, Object... variaveisDeSubstituicao) {
-        System.out.print(String.format(mensagemParaUsuario, variaveisDeSubstituicao));
-
         try {
-            return leitura.nextLine().charAt(0);
+            return showInputDialog(
+                    null,
+                    String.format(mensagemParaUsuario, variaveisDeSubstituicao),
+                    "Janela para Leitura de Character",
+                    PLAIN_MESSAGE
+            ).charAt(0);
         } catch (Exception e) {
             return null;
         }
@@ -213,10 +224,15 @@ public class Console {
      * @return O <code>Boolean</code> lido ou <code>null</code> em caso de erro.
      */
     public static Boolean lerBoolean(String mensagemParaUsuario) {
-        System.out.print(mensagemParaUsuario);
-
         try {
-            return Boolean.parseBoolean(leitura.nextLine());
+            return Boolean.parseBoolean(
+                    showInputDialog(
+                            null,
+                            mensagemParaUsuario,
+                            "Janela para Leitura de Boolean",
+                            PLAIN_MESSAGE
+                    )
+            );
         } catch (Exception e) {
             return null;
         }
@@ -245,10 +261,15 @@ public class Console {
      * @return O <code>Boolean</code> lido ou <code>null</code> em caso de erro.
      */
     public static Boolean lerBoolean(String mensagemParaUsuario, Object... variaveisDeSubstituicao) {
-        System.out.print(String.format(mensagemParaUsuario, variaveisDeSubstituicao));
-
         try {
-            return Boolean.parseBoolean(leitura.nextLine());
+            return Boolean.parseBoolean(
+                    showInputDialog(
+                            null,
+                            String.format(mensagemParaUsuario, variaveisDeSubstituicao),
+                            "Janela para Leitura de Boolean",
+                            PLAIN_MESSAGE
+                    )
+            );
         } catch (Exception e) {
             return null;
         }
@@ -264,10 +285,15 @@ public class Console {
      * @return O <code>Integer</code> lido ou <code>null</code> em caso de erro.
      */
     public static Integer lerInteger(String mensagemParaUsuario) {
-        System.out.print(mensagemParaUsuario);
-
         try {
-            return Integer.parseInt(leitura.nextLine());
+            return Integer.parseInt(
+                    showInputDialog(
+                            null,
+                            mensagemParaUsuario,
+                            "Janela para Leitura de Integer",
+                            PLAIN_MESSAGE
+                    )
+            );
         } catch (Exception e) {
             return null;
         }
@@ -296,10 +322,15 @@ public class Console {
      * @return O <code>Integer</code> lido ou <code>null</code> em caso de erro.
      */
     public static Integer lerInteger(String mensagemParaUsuario, Object... variaveisDeSubstituicao) {
-        System.out.print(String.format(mensagemParaUsuario, variaveisDeSubstituicao));
-
         try {
-            return Integer.parseInt(leitura.nextLine());
+            return Integer.parseInt(
+                    showInputDialog(
+                            null,
+                            String.format(mensagemParaUsuario, variaveisDeSubstituicao),
+                            "Janela para Leitura de Integer",
+                            PLAIN_MESSAGE
+                    )
+            );
         } catch (Exception e) {
             return null;
         }
@@ -315,10 +346,15 @@ public class Console {
      * @return O <code>Float</code> lido ou <code>null</code> em caso de erro.
      */
     public static Float lerFloat(String mensagemParaUsuario) {
-        System.out.print(mensagemParaUsuario);
-
         try {
-            return Float.parseFloat(leitura.nextLine());
+            return Float.parseFloat(
+                    showInputDialog(
+                            null,
+                            mensagemParaUsuario,
+                            "Janela para Leitura de Float",
+                            PLAIN_MESSAGE
+                    )
+            );
         } catch (Exception e) {
             return null;
         }
@@ -347,12 +383,17 @@ public class Console {
      * @return O <code>Float</code> lido ou <code>null</code> em caso de erro.
      */
     public static Float lerFloat(String mensagemParaUsuario, Object... variaveisDeSubstituicao) {
-        System.out.print(String.format(mensagemParaUsuario, variaveisDeSubstituicao));
-
         try {
-            return Float.parseFloat(leitura.nextLine());
+            return Float.parseFloat(
+                    showInputDialog(
+                            null,
+                            String.format(mensagemParaUsuario, variaveisDeSubstituicao),
+                            "Janela para Leitura de Float",
+                            PLAIN_MESSAGE
+                    )
+            );
         } catch (Exception e) {
-            return null;
+            return Float.MAX_VALUE;
         }
     }
     // </editor-fold>
@@ -366,10 +407,15 @@ public class Console {
      * @return O <code>Double</code> lido ou <code>null</code> em caso de erro.
      */
     public static Double lerDouble(String mensagemParaUsuario) {
-        System.out.print(mensagemParaUsuario);
-
         try {
-            return Double.parseDouble(leitura.nextLine());
+            return Double.parseDouble(
+                    showInputDialog(
+                            null,
+                            mensagemParaUsuario,
+                            "Janela para Leitura de Double",
+                            PLAIN_MESSAGE
+                    )
+            );
         } catch (Exception e) {
             return null;
         }
@@ -398,10 +444,15 @@ public class Console {
      * @return O <code>Double</code> lido ou <code>null</code> em caso de erro.
      */
     public static Double lerDouble(String mensagemParaUsuario, Object... variaveisDeSubstituicao) {
-        System.out.print(String.format(mensagemParaUsuario, variaveisDeSubstituicao));
-
         try {
-            return Double.parseDouble(leitura.nextLine());
+            return Double.parseDouble(
+                    showInputDialog(
+                            null,
+                            String.format(mensagemParaUsuario, variaveisDeSubstituicao),
+                            "Janela para Leitura de Double",
+                            PLAIN_MESSAGE
+                    )
+            );
         } catch (Exception e) {
             return null;
         }
@@ -417,10 +468,15 @@ public class Console {
      * @return O <code>BigDecimal</code> lido ou <code>null</code> em caso de erro.
      */
     public static BigDecimal lerBigDecimal(String mensagemParaUsuario) {
-        System.out.print(mensagemParaUsuario);
-
         try {
-            return new BigDecimal(leitura.nextLine());
+            return new BigDecimal(
+                    showInputDialog(
+                            null,
+                            mensagemParaUsuario,
+                            "Janela para Leitura de BigDecimal",
+                            PLAIN_MESSAGE
+                    )
+            );
         } catch (Exception e) {
             return null;
         }
@@ -449,16 +505,21 @@ public class Console {
      * @return O <code>BigDecimal</code> lido ou <code>null</code> em caso de erro.
      */
     public static BigDecimal lerBigDecimal(String mensagemParaUsuario, Object... variaveisDeSubstituicao) {
-        System.out.print(String.format(mensagemParaUsuario, variaveisDeSubstituicao));
-
         try {
-            return new BigDecimal(leitura.nextLine());
+            return new BigDecimal(
+                    showInputDialog(
+                            null,
+                            String.format(mensagemParaUsuario, variaveisDeSubstituicao),
+                            "Janela para Leitura de BigDecimal",
+                            PLAIN_MESSAGE
+                    )
+            );
         } catch (Exception e) {
             return null;
         }
     }
     // </editor-fold>
-    
+        
     // <editor-fold defaultstate="collapsed" desc="escreverString(String mensagemOuVariavel) : void">
     /**
      * Executa a operção de "escrita" de uma variável (objeto) do tipo
@@ -468,7 +529,12 @@ public class Console {
      * usuário.
      */
     public static void escreverString(String mensagemOuVariavel) {
-        System.out.print(mensagemOuVariavel);
+        showMessageDialog(
+                null,
+                mensagemOuVariavel,
+                "Janela para Escrita de String",
+                PLAIN_MESSAGE
+        );
     }
     // </editor-fold>
 
@@ -494,7 +560,12 @@ public class Console {
      * Strings especiais.
      */
     public static void escreverString(String mensagemOuVariavel, Object... variaveisDeSubstituicao) {
-        System.out.print(String.format(mensagemOuVariavel, variaveisDeSubstituicao));
+        showMessageDialog(
+                null,
+                String.format(mensagemOuVariavel, variaveisDeSubstituicao),
+                "Janela para Escrita de String",
+                PLAIN_MESSAGE
+        );
     }
     // </editor-fold>
 
@@ -507,7 +578,12 @@ public class Console {
      * usuário.
      */
     public static void escreverLinhaDeString(String mensagemOuVariavel) {
-        System.out.println(mensagemOuVariavel);
+        showMessageDialog(
+                null,
+                mensagemOuVariavel + NOVA_LINHA_01,
+                "Janela para Escrita de String",
+                PLAIN_MESSAGE
+        );
     }
     // </editor-fold>
 
@@ -533,8 +609,12 @@ public class Console {
      * Strings especiais.
      */
     public static void escreverLinhaDeString(String mensagemOuVariavel, Object... variaveisDeSubstituicao) {
-        System.out.println(String.format(mensagemOuVariavel, variaveisDeSubstituicao));
+        showMessageDialog(
+                null,
+                String.format(mensagemOuVariavel, variaveisDeSubstituicao) + NOVA_LINHA_01,
+                "Janela para Escrita de String",
+                PLAIN_MESSAGE
+        );
     }
     // </editor-fold>
-
 }

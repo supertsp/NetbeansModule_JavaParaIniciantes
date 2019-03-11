@@ -1,4 +1,4 @@
-package javaparainiciantes.es;
+package entradasaida;
 
 public class Conversoes {
     

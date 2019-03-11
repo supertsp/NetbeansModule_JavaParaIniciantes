@@ -16,15 +16,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 //</editor-fold>
-package javaparainiciantes.es;
+package entradasaida;
 
 import java.math.BigDecimal;
-import static javax.swing.JOptionPane.*;
+import java.util.Scanner;
 
 /**
  * Classe com métodos estáticos que facilitam as operações de "leitura" e
- * "escrita" (E/S) de variáveis via Janela Popup. Os tipos de dados compatíveis
- * são:
+ * "escrita" (E/S) de variáveis via console. Os tipos de dados compatíveis são:
  * <dl>
  * <dd>• <code>String</code>: dado (objeto) do tipo texto. Ex.: "abc";
  * <dd>• <code>Character</code>: dado (objeto) do tipo texto (apenas uma letra)
@@ -45,7 +44,7 @@ import static javax.swing.JOptionPane.*;
  * @author Tiago Penha Pedroso
  * @version 1.0
  */
-public class JanelaPopup {
+public class Console {
 
     // <editor-fold defaultstate="collapsed" desc="Constantes String NOVA_LINHA_**">
     /**
@@ -99,6 +98,8 @@ public class JanelaPopup {
     public static final String NOVA_LINHA_10 = "\n\n\n\n\n\n\n\n\n\n";
     // </editor-fold>
 
+    private static Scanner leitura = new Scanner(System.in);
+
     // <editor-fold defaultstate="collapsed" desc="lerString(String mensagemParaUsuario) : String|null">
     /**
      * Executa a operção de "leitura" de uma variável (objeto) do tipo
@@ -108,13 +109,10 @@ public class JanelaPopup {
      * @return A <code>String</code> lida ou <code>null</code> em caso de erro.
      */
     public static String lerString(String mensagemParaUsuario) {
+        System.out.print(mensagemParaUsuario);
+
         try {
-            return showInputDialog(
-                    null,
-                    mensagemParaUsuario,
-                    "Janela para Leitura de String",
-                    PLAIN_MESSAGE
-            );
+            return leitura.nextLine();
         } catch (Exception e) {
             return null;
         }
@@ -143,13 +141,10 @@ public class JanelaPopup {
      * @return A <code>String</code> lida ou <code>null</code> em caso de erro.
      */
     public static String lerString(String mensagemParaUsuario, Object... variaveisDeSubstituicao) {
+        System.out.print(String.format(mensagemParaUsuario, variaveisDeSubstituicao));
+
         try {
-            return showInputDialog(
-                    null,
-                    String.format(mensagemParaUsuario, variaveisDeSubstituicao),
-                    "Janela para Leitura de String",
-                    PLAIN_MESSAGE
-            );
+            return leitura.nextLine();
         } catch (Exception e) {
             return null;
         }
@@ -166,13 +161,10 @@ public class JanelaPopup {
      * erro.
      */
     public static Character lerCharacter(String mensagemParaUsuario) {
+        System.out.print(mensagemParaUsuario);
+
         try {
-            return showInputDialog(
-                    null,
-                    mensagemParaUsuario,
-                    "Janela para Leitura de Character",
-                    PLAIN_MESSAGE
-            ).charAt(0);
+            return leitura.nextLine().charAt(0);
         } catch (Exception e) {
             return null;
         }
@@ -202,13 +194,10 @@ public class JanelaPopup {
      * erro.
      */
     public static Character lerCharacter(String mensagemParaUsuario, Object... variaveisDeSubstituicao) {
+        System.out.print(String.format(mensagemParaUsuario, variaveisDeSubstituicao));
+
         try {
-            return showInputDialog(
-                    null,
-                    String.format(mensagemParaUsuario, variaveisDeSubstituicao),
-                    "Janela para Leitura de Character",
-                    PLAIN_MESSAGE
-            ).charAt(0);
+            return leitura.nextLine().charAt(0);
         } catch (Exception e) {
             return null;
         }
@@ -224,15 +213,10 @@ public class JanelaPopup {
      * @return O <code>Boolean</code> lido ou <code>null</code> em caso de erro.
      */
     public static Boolean lerBoolean(String mensagemParaUsuario) {
+        System.out.print(mensagemParaUsuario);
+
         try {
-            return Boolean.parseBoolean(
-                    showInputDialog(
-                            null,
-                            mensagemParaUsuario,
-                            "Janela para Leitura de Boolean",
-                            PLAIN_MESSAGE
-                    )
-            );
+            return Boolean.parseBoolean(leitura.nextLine());
         } catch (Exception e) {
             return null;
         }
@@ -261,15 +245,10 @@ public class JanelaPopup {
      * @return O <code>Boolean</code> lido ou <code>null</code> em caso de erro.
      */
     public static Boolean lerBoolean(String mensagemParaUsuario, Object... variaveisDeSubstituicao) {
+        System.out.print(String.format(mensagemParaUsuario, variaveisDeSubstituicao));
+
         try {
-            return Boolean.parseBoolean(
-                    showInputDialog(
-                            null,
-                            String.format(mensagemParaUsuario, variaveisDeSubstituicao),
-                            "Janela para Leitura de Boolean",
-                            PLAIN_MESSAGE
-                    )
-            );
+            return Boolean.parseBoolean(leitura.nextLine());
         } catch (Exception e) {
             return null;
         }
@@ -285,15 +264,10 @@ public class JanelaPopup {
      * @return O <code>Integer</code> lido ou <code>null</code> em caso de erro.
      */
     public static Integer lerInteger(String mensagemParaUsuario) {
+        System.out.print(mensagemParaUsuario);
+
         try {
-            return Integer.parseInt(
-                    showInputDialog(
-                            null,
-                            mensagemParaUsuario,
-                            "Janela para Leitura de Integer",
-                            PLAIN_MESSAGE
-                    )
-            );
+            return Integer.parseInt(leitura.nextLine());
         } catch (Exception e) {
             return null;
         }
@@ -322,15 +296,10 @@ public class JanelaPopup {
      * @return O <code>Integer</code> lido ou <code>null</code> em caso de erro.
      */
     public static Integer lerInteger(String mensagemParaUsuario, Object... variaveisDeSubstituicao) {
+        System.out.print(String.format(mensagemParaUsuario, variaveisDeSubstituicao));
+
         try {
-            return Integer.parseInt(
-                    showInputDialog(
-                            null,
-                            String.format(mensagemParaUsuario, variaveisDeSubstituicao),
-                            "Janela para Leitura de Integer",
-                            PLAIN_MESSAGE
-                    )
-            );
+            return Integer.parseInt(leitura.nextLine());
         } catch (Exception e) {
             return null;
         }
@@ -346,15 +315,10 @@ public class JanelaPopup {
      * @return O <code>Float</code> lido ou <code>null</code> em caso de erro.
      */
     public static Float lerFloat(String mensagemParaUsuario) {
+        System.out.print(mensagemParaUsuario);
+
         try {
-            return Float.parseFloat(
-                    showInputDialog(
-                            null,
-                            mensagemParaUsuario,
-                            "Janela para Leitura de Float",
-                            PLAIN_MESSAGE
-                    )
-            );
+            return Float.parseFloat(leitura.nextLine());
         } catch (Exception e) {
             return null;
         }
@@ -383,17 +347,12 @@ public class JanelaPopup {
      * @return O <code>Float</code> lido ou <code>null</code> em caso de erro.
      */
     public static Float lerFloat(String mensagemParaUsuario, Object... variaveisDeSubstituicao) {
+        System.out.print(String.format(mensagemParaUsuario, variaveisDeSubstituicao));
+
         try {
-            return Float.parseFloat(
-                    showInputDialog(
-                            null,
-                            String.format(mensagemParaUsuario, variaveisDeSubstituicao),
-                            "Janela para Leitura de Float",
-                            PLAIN_MESSAGE
-                    )
-            );
+            return Float.parseFloat(leitura.nextLine());
         } catch (Exception e) {
-            return Float.MAX_VALUE;
+            return null;
         }
     }
     // </editor-fold>
@@ -407,15 +366,10 @@ public class JanelaPopup {
      * @return O <code>Double</code> lido ou <code>null</code> em caso de erro.
      */
     public static Double lerDouble(String mensagemParaUsuario) {
+        System.out.print(mensagemParaUsuario);
+
         try {
-            return Double.parseDouble(
-                    showInputDialog(
-                            null,
-                            mensagemParaUsuario,
-                            "Janela para Leitura de Double",
-                            PLAIN_MESSAGE
-                    )
-            );
+            return Double.parseDouble(leitura.nextLine());
         } catch (Exception e) {
             return null;
         }
@@ -444,15 +398,10 @@ public class JanelaPopup {
      * @return O <code>Double</code> lido ou <code>null</code> em caso de erro.
      */
     public static Double lerDouble(String mensagemParaUsuario, Object... variaveisDeSubstituicao) {
+        System.out.print(String.format(mensagemParaUsuario, variaveisDeSubstituicao));
+
         try {
-            return Double.parseDouble(
-                    showInputDialog(
-                            null,
-                            String.format(mensagemParaUsuario, variaveisDeSubstituicao),
-                            "Janela para Leitura de Double",
-                            PLAIN_MESSAGE
-                    )
-            );
+            return Double.parseDouble(leitura.nextLine());
         } catch (Exception e) {
             return null;
         }
@@ -468,15 +417,10 @@ public class JanelaPopup {
      * @return O <code>BigDecimal</code> lido ou <code>null</code> em caso de erro.
      */
     public static BigDecimal lerBigDecimal(String mensagemParaUsuario) {
+        System.out.print(mensagemParaUsuario);
+
         try {
-            return new BigDecimal(
-                    showInputDialog(
-                            null,
-                            mensagemParaUsuario,
-                            "Janela para Leitura de BigDecimal",
-                            PLAIN_MESSAGE
-                    )
-            );
+            return new BigDecimal(leitura.nextLine());
         } catch (Exception e) {
             return null;
         }
@@ -505,21 +449,16 @@ public class JanelaPopup {
      * @return O <code>BigDecimal</code> lido ou <code>null</code> em caso de erro.
      */
     public static BigDecimal lerBigDecimal(String mensagemParaUsuario, Object... variaveisDeSubstituicao) {
+        System.out.print(String.format(mensagemParaUsuario, variaveisDeSubstituicao));
+
         try {
-            return new BigDecimal(
-                    showInputDialog(
-                            null,
-                            String.format(mensagemParaUsuario, variaveisDeSubstituicao),
-                            "Janela para Leitura de BigDecimal",
-                            PLAIN_MESSAGE
-                    )
-            );
+            return new BigDecimal(leitura.nextLine());
         } catch (Exception e) {
             return null;
         }
     }
     // </editor-fold>
-        
+    
     // <editor-fold defaultstate="collapsed" desc="escreverString(String mensagemOuVariavel) : void">
     /**
      * Executa a operção de "escrita" de uma variável (objeto) do tipo
@@ -529,12 +468,7 @@ public class JanelaPopup {
      * usuário.
      */
     public static void escreverString(String mensagemOuVariavel) {
-        showMessageDialog(
-                null,
-                mensagemOuVariavel,
-                "Janela para Escrita de String",
-                PLAIN_MESSAGE
-        );
+        System.out.print(mensagemOuVariavel);
     }
     // </editor-fold>
 
@@ -560,12 +494,7 @@ public class JanelaPopup {
      * Strings especiais.
      */
     public static void escreverString(String mensagemOuVariavel, Object... variaveisDeSubstituicao) {
-        showMessageDialog(
-                null,
-                String.format(mensagemOuVariavel, variaveisDeSubstituicao),
-                "Janela para Escrita de String",
-                PLAIN_MESSAGE
-        );
+        System.out.print(String.format(mensagemOuVariavel, variaveisDeSubstituicao));
     }
     // </editor-fold>
 
@@ -578,12 +507,7 @@ public class JanelaPopup {
      * usuário.
      */
     public static void escreverLinhaDeString(String mensagemOuVariavel) {
-        showMessageDialog(
-                null,
-                mensagemOuVariavel + NOVA_LINHA_01,
-                "Janela para Escrita de String",
-                PLAIN_MESSAGE
-        );
+        System.out.println(mensagemOuVariavel);
     }
     // </editor-fold>
 
@@ -609,12 +533,8 @@ public class JanelaPopup {
      * Strings especiais.
      */
     public static void escreverLinhaDeString(String mensagemOuVariavel, Object... variaveisDeSubstituicao) {
-        showMessageDialog(
-                null,
-                String.format(mensagemOuVariavel, variaveisDeSubstituicao) + NOVA_LINHA_01,
-                "Janela para Escrita de String",
-                PLAIN_MESSAGE
-        );
+        System.out.println(String.format(mensagemOuVariavel, variaveisDeSubstituicao));
     }
     // </editor-fold>
+
 }
