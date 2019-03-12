@@ -32,6 +32,8 @@ package conteudojanelapersonalizada.padroesprojeto;
  */
 public interface Dimensionavel {
     
+    public void setDimensao(Double proporcaoNovaDimensao);
+    
     public void setDimensao(Integer novoComprimento, Integer novaAltura);
     
     public void setDimensaoComprimento(Integer novoComprimento);

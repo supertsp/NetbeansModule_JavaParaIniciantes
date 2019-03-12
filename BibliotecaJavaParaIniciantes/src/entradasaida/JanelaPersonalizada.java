@@ -157,7 +157,7 @@ public class JanelaPersonalizada implements Posicionavel, Dimensionavel {
     //<editor-fold defaultstate="collapsed" desc="Métodos: controle do List<PainelConteudo>">
     public void adicionarPainelConteudo(PainelConteudo... novosPaineis) {
         for (PainelConteudo painel : novosPaineis) {
-            janela.setContentPane(painel.getJPanel());
+            janela.setContentPane(painel.getObjetoJPanel());
             paineis.add(painel);
 
             painel.setVisivel(false);
@@ -167,16 +167,15 @@ public class JanelaPersonalizada implements Posicionavel, Dimensionavel {
 
     public void adicionarPainelConteudo(Integer indicePainelAtivo, PainelConteudo... novosPaineis) {
         for (Integer contador = 0; contador < novosPaineis.length; contador++) {
-//            janela.setContentPane(novosPaineis[contador].getJPanel());
+//            janela.setContentPane(novosPaineis[contador].getObjetoJPanel());
             paineis.add(novosPaineis[contador]);
 
             if (indicePainelAtivo == contador) {
-                System.out.println("painel ativo");
-                janela.setContentPane(novosPaineis[contador].getJPanel());
+                janela.setContentPane(novosPaineis[contador].getObjetoJPanel());
                 novosPaineis[contador].setVisivel(true);
                 indicePainelConteudoVisivel = indicePainelAtivo;
             } else {
-                janela.remove(novosPaineis[contador].getJPanel());
+                janela.remove(novosPaineis[contador].getObjetoJPanel());
                 novosPaineis[contador].setVisivel(false);
             }
 
@@ -215,9 +214,9 @@ public class JanelaPersonalizada implements Posicionavel, Dimensionavel {
             //atualiza o painel atual dentro da JanelaPersonalizada
             if (painelProcurado != null) {
                 //remove painel antigo
-                janela.remove(painelProcurado.getJPanel());
+                janela.remove(painelProcurado.getObjetoJPanel());
                 //adiciona o novo
-                janela.setContentPane(getPainelConteudo(indicePainelConteudoVisivel).getJPanel());
+                janela.setContentPane(getPainelConteudo(indicePainelConteudoVisivel).getObjetoJPanel());
             }
         }
     }
@@ -245,9 +244,9 @@ public class JanelaPersonalizada implements Posicionavel, Dimensionavel {
             //atualiza o painel atual dentro da JanelaPersonalizada
             if (painelProcurado != null) {
                 //remove painel antigo
-                janela.remove(painelProcurado.getJPanel());
+                janela.remove(painelProcurado.getObjetoJPanel());
                 //adiciona o novo
-                janela.setContentPane(getPainelConteudo(indicePainelConteudoVisivel).getJPanel());
+                janela.setContentPane(getPainelConteudo(indicePainelConteudoVisivel).getObjetoJPanel());
             }
         }
     }
@@ -260,10 +259,10 @@ public class JanelaPersonalizada implements Posicionavel, Dimensionavel {
         if (indicePainelProcurado >= 0 && indicePainelProcurado < getQuantidadePainelConteudo()) {
             for (Integer contador = 0; contador < paineis.size(); contador++) {
                 if (indicePainelProcurado == contador) {
-                    janela.setContentPane(paineis.get(contador).getJPanel());
+                    janela.setContentPane(paineis.get(contador).getObjetoJPanel());
                     paineis.get(contador).setVisivel(true);
                 } else {
-                    janela.remove(paineis.get(contador).getJPanel());
+                    janela.remove(paineis.get(contador).getObjetoJPanel());
                     paineis.get(contador).setVisivel(false);
                 }
             }
@@ -332,6 +331,14 @@ public class JanelaPersonalizada implements Posicionavel, Dimensionavel {
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Métodos: Dimensionavel">
+    @Override
+    public void setDimensao(Double proporcaoNovaDimensao){
+        janela.setDimensao(
+                (int)(getDimensaoComprimento() * proporcaoNovaDimensao),
+                (int)(getDimensaoAltura() * proporcaoNovaDimensao)
+        );
+    }
+    
     @Override
     public void setDimensao(Integer novoComprimento, Integer novaAltura) {
         janela.setDimensao(novoComprimento, novaAltura);

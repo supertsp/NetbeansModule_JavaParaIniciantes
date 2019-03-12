@@ -27,6 +27,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Frame;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -53,8 +54,8 @@ public class PainelConteudo implements Posicionavel, Dimensionavel {
     public void setVisivel(Boolean visivel) {
         painelBruto.setVisible(visivel);
     }
-    
-    public JPanel getJPanel() {
+
+    public JPanel getObjetoJPanel() {
         return painelBruto;
     }
 
@@ -64,34 +65,48 @@ public class PainelConteudo implements Posicionavel, Dimensionavel {
     }
 
     //<editor-fold defaultstate="collapsed" desc="adicionarComponenteDePainelConteudo(...)">
-    public void adicionarComponenteDePainelConteudo(Component novoComponente) {
+    public void adicionarComponenteDePainelConteudo(JComponent novoComponente) {
         painelBruto.adicionarComponenteDePainelConteudo(novoComponente);
     }
 
     public void adicionarComponenteDePainelConteudo(ComponenteDePainelConteudo novoComponente) {
-        painelBruto.adicionarComponenteDePainelConteudo(novoComponente, 0, 0);
+        painelBruto.adicionarComponenteDePainelConteudo(
+                novoComponente,
+                novoComponente.getPosicaoX(),
+                novoComponente.getPosicaoY()
+        );
     }
 
     public void adicionarComponenteDePainelConteudo(
             ComponenteDePainelConteudo novoComponente,
-            Integer x, Integer y
+            Integer novoX, Integer novoY
     ) {
-        painelBruto.adicionarComponenteDePainelConteudo(novoComponente, x, y);
+        painelBruto.adicionarComponenteDePainelConteudo(novoComponente, novoX, novoY);
     }
 
     public void adicionarComponenteDePainelConteudo(
             ComponenteDePainelConteudo novoComponente,
             Integer ordemCamada
     ) {
-        painelBruto.adicionarComponenteDePainelConteudo(novoComponente, 0, 0, ordemCamada);
+        painelBruto.adicionarComponenteDePainelConteudo(
+                novoComponente,
+                novoComponente.getPosicaoX(),
+                novoComponente.getPosicaoY(),
+                ordemCamada
+        );
     }
 
     public void adicionarComponenteDePainelConteudo(
             ComponenteDePainelConteudo novoComponente,
-            Integer x, Integer y,
+            Integer novoX, Integer novoY,
             Integer ordemCamada
     ) {
-        painelBruto.adicionarComponenteDePainelConteudo(novoComponente, x, y, ordemCamada);
+        painelBruto.adicionarComponenteDePainelConteudo(
+                novoComponente,
+                novoX,
+                novoY,
+                ordemCamada
+        );
     }
     //</editor-fold>
 
@@ -141,8 +156,16 @@ public class PainelConteudo implements Posicionavel, Dimensionavel {
         return painelBruto.getY();
     }
     //</editor-fold>
-    
+
     //<editor-fold defaultstate="collapsed" desc="Métodos: Dimensionavel">
+    @Override
+    public void setDimensao(Double proporcaoNovaDimensao){
+        painelBruto.setDimensao(
+                (int)(getDimensaoComprimento() * proporcaoNovaDimensao),
+                (int)(getDimensaoAltura() * proporcaoNovaDimensao)
+        );
+    }
+    
     @Override
     public void setDimensao(Integer novoComprimento, Integer novaAltura) {
         painelBruto.setDimensao(novoComprimento, novaAltura);
@@ -161,7 +184,7 @@ public class PainelConteudo implements Posicionavel, Dimensionavel {
     @Override
     public void incrementarDimensao(Integer valorIncrementoComprimentoAltura) {
         setDimensao(
-                getDimensaoComprimento() + valorIncrementoComprimentoAltura, 
+                getDimensaoComprimento() + valorIncrementoComprimentoAltura,
                 getDimensaoAltura() + valorIncrementoComprimentoAltura
         );
     }
@@ -169,7 +192,7 @@ public class PainelConteudo implements Posicionavel, Dimensionavel {
     @Override
     public void incrementarDimensao(Integer valorIncrementoComprimento, Integer valorIncrementoAltura) {
         setDimensao(
-                getDimensaoComprimento() + valorIncrementoComprimento, 
+                getDimensaoComprimento() + valorIncrementoComprimento,
                 getDimensaoAltura() + valorIncrementoAltura
         );
     }
@@ -177,7 +200,7 @@ public class PainelConteudo implements Posicionavel, Dimensionavel {
     @Override
     public void incrementarDimensaoComprimento(Integer valorIncremento) {
         setDimensao(
-                getDimensaoComprimento() + valorIncremento, 
+                getDimensaoComprimento() + valorIncremento,
                 getDimensaoAltura()
         );
     }
@@ -185,7 +208,7 @@ public class PainelConteudo implements Posicionavel, Dimensionavel {
     @Override
     public void incrementarDimensaoAltura(Integer valorIncremento) {
         setDimensao(
-                getDimensaoComprimento(), 
+                getDimensaoComprimento(),
                 getDimensaoAltura() + valorIncremento
         );
     }
@@ -255,7 +278,7 @@ public class PainelConteudo implements Posicionavel, Dimensionavel {
                 camadaDesenho.setPreferredSize(new Dimension(comprimento, altura));
             }
         }
-        
+
         public void setVisivel(Boolean visivel) {
             super.setVisible(visivel);
 
@@ -264,21 +287,22 @@ public class PainelConteudo implements Posicionavel, Dimensionavel {
                 super.requestFocus();
             }
         }
-        
-//        public Paint getPaint(){
-//            super.get
-//        }
+
+        public JPanel getObjetoJPanel() {
+            return this;
+        }
 
         //<editor-fold defaultstate="collapsed" desc="adicionarComponenteDePainelConteudo(...)">
-        public void adicionarComponenteDePainelConteudo(
-                Component novoComponente
-        ) {
-            novoComponente.setBounds(novoComponente.getBounds());
+        public void adicionarComponenteDePainelConteudo(JComponent novoComponente) {
             camadaDesenho.add(novoComponente);
         }
 
         public void adicionarComponenteDePainelConteudo(ComponenteDePainelConteudo novoComponente) {
-            adicionarComponenteDePainelConteudo(novoComponente, 0, 0);
+            this.adicionarComponenteDePainelConteudo(
+                    novoComponente,
+                    novoComponente.getPosicaoX(),
+                    novoComponente.getPosicaoY()
+            );
         }
 
         public void adicionarComponenteDePainelConteudo(
@@ -286,14 +310,19 @@ public class PainelConteudo implements Posicionavel, Dimensionavel {
                 Integer x, Integer y
         ) {
             novoComponente.setPosicao(x, y);
-            camadaDesenho.add(novoComponente.getComponent());
+            camadaDesenho.add(novoComponente.getObjetoJComponent());
         }
 
         public void adicionarComponenteDePainelConteudo(
                 ComponenteDePainelConteudo novoComponente,
                 Integer ordemCamada
         ) {
-            adicionarComponenteDePainelConteudo(novoComponente, 0, 0, ordemCamada);
+            this.adicionarComponenteDePainelConteudo(
+                    novoComponente,
+                    novoComponente.getPosicaoX(),
+                    novoComponente.getPosicaoY(),
+                    ordemCamada
+            );
         }
 
         public void adicionarComponenteDePainelConteudo(
@@ -302,7 +331,7 @@ public class PainelConteudo implements Posicionavel, Dimensionavel {
                 Integer ordemCamada
         ) {
             novoComponente.setPosicao(x, y);
-            camadaDesenho.add(novoComponente.getComponent(), new Integer(ordemCamada));
+            camadaDesenho.add(novoComponente.getObjetoJComponent(), new Integer(ordemCamada));
         }
         //</editor-fold>
 

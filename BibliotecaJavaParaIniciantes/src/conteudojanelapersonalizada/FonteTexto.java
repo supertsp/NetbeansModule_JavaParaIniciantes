@@ -16,22 +16,60 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 //</editor-fold>
-
 package conteudojanelapersonalizada;
+
+import com.sun.org.apache.xml.internal.resolver.Catalog;
+import java.awt.Font;
 
 /**
  * Descrição de <code>FonteTexto</code>.
  * <dl>
  * <dd>• Ponto 1: "abc";
  * </dl>
- * 
+ *
  * <br><br><small>Criado em: 10/03/2019</small>
  *
  * @author Tiago Penha Pedroso
  * @version 1.0
  */
 public class FonteTexto {
-    
-    //
+
+    protected Font fonte;
+    protected String URL;
+    protected Boolean importouFonteTexto;
+
+    public FonteTexto(String URL, Integer tamanhoCaractere) {
+        this.URL = URL;
+        initFonteURL(tamanhoCaractere);
+    }
+
+    /**
+     * Importa um arquivo de Fonte.
+     */
+    private void initFonteURL(Integer tamanhoCaractere) {
+        if (URL.substring(URL.length() - 3).contains("ttf")) {
+            try {
+                fonte = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream(URL));
+                fonte = fonte.deriveFont(Font.PLAIN, tamanhoCaractere);
+                importouFonteTexto = true;
+            } catch (Exception e) {
+                importouFonteTexto = false;
+                System.out.println(
+                          "+------------------------------------+\n"
+                        + "| Erro ao importar a FonteTexto! :(\n"
+                        + "| URL: " + URL + "\n"
+                        + "+------------------------------------+\n"
+                );
+            }
+        } else {
+            importouFonteTexto = false;
+            System.out.println(
+                      "+----------------------------------+\n"
+                    + "| Extensão de arquivo inválida! :( |\n"
+                    + "| Extensão permitada: ttf          |\n"
+                    + "+----------------------------------+\n"
+            );
+        }
+    }
 
 }

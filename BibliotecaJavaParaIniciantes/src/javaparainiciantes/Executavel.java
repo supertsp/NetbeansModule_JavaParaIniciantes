@@ -1,5 +1,6 @@
 package javaparainiciantes;
 
+import conteudojanelapersonalizada.ImagemBitmap;
 import conteudojanelapersonalizada.PainelConteudo;
 import java.math.BigDecimal;
 import entradasaida.Console;
@@ -30,7 +31,7 @@ public class Executavel{
 
         PainelConteudo painel01 = new PainelConteudo();
         painel01.setCorDeFundo("#d1d1d1"); //cinza alaranjado      
-        painel01.getJPanel().setBorder(BorderFactory.createBevelBorder(1));
+        painel01.getObjetoJPanel().setBorder(BorderFactory.createBevelBorder(1));
         
         JButton botaoTela1 = createButton("tela 01", Color.gray, 10, 50);
         botaoTela1.setForeground(Color.MAGENTA);
@@ -61,13 +62,18 @@ public class Executavel{
         botaoTela1.setBorderPainted(false);
 //        botaoTela1.setContentAreaFilled(false);
         
-        JTextField inputTela01 = createTextField("placeholder tela 01", Color.DARK_GRAY, 5, 100);
+        JTextField inputTela01 = createTextField("placeholder tela 01", Color.DARK_GRAY, 10, 100);
         inputTela01.setForeground(Color.MAGENTA);
         inputTela01.setBorder(BorderFactory.createEmptyBorder());
 //        inputTela01.
+
+        ImagemBitmap imagem = new ImagemBitmap("/javaparainiciantes/girl.png", 15, 200);
+        imagem.setDimensao(10.5);
+        
         
         painel01.adicionarComponenteDePainelConteudo(botaoTela1);
         painel01.adicionarComponenteDePainelConteudo(inputTela01);
+        painel01.adicionarComponenteDePainelConteudo(imagem, 0);
 
         PainelConteudo painel02 = new PainelConteudo();
         painel02.setCorDeFundo("#ed590a"); //laranja
@@ -83,7 +89,7 @@ public class Executavel{
 //        painel03.adicionarComponenteDePainelConteudo(botaoTela3);
 //        painel03.adicionarComponenteDePainelConteudo(inputTela03);
 
-        JanelaPersonalizada janela = new JanelaPersonalizada();
+        JanelaPersonalizada janela = new JanelaPersonalizada(800, 600);
         janela.adicionarPainelConteudo(0, painel01, painel02, painel03);
 
         janela.setCorDeFundo("000000");
@@ -119,7 +125,7 @@ public class Executavel{
         JButton button = new JButton(text);
         button.setOpaque(true);
         button.setDoubleBuffered(true);
-
+        
         button.setVerticalAlignment(JButton.TOP);
         button.setHorizontalAlignment(JButton.CENTER);
 

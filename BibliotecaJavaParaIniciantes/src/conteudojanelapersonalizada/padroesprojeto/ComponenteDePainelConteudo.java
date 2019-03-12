@@ -35,6 +35,6 @@ import javax.swing.JComponent;
  */
 public interface ComponenteDePainelConteudo extends Posicionavel{
     
-    public JComponent getComponent();
+    public JComponent getObjetoJComponent();
     
 }
