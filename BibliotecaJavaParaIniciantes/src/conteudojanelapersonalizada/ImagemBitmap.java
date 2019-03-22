@@ -33,8 +33,8 @@ public class ImagemBitmap implements ComponenteDePainelConteudo, Posicionavel, D
 
     protected Image imagem;
     protected JLabel imagemLabel;
-    protected String URL;
-    protected Boolean importouImagem;
+    protected String URL = "";
+    protected Boolean importouImagem = false;
 
     //<editor-fold defaultstate="collapsed" desc="Construtores">
     /**
@@ -54,6 +54,7 @@ public class ImagemBitmap implements ComponenteDePainelConteudo, Posicionavel, D
         imagemLabel = new JLabel();
         imagemLabel.setHorizontalAlignment(JLabel.CENTER);
         imagemLabel.setOpaque(false);
+        imagemLabel.setDoubleBuffered(true);
         setPosicao(posicaoX, posicaoY);
         importar();
     }
@@ -177,7 +178,7 @@ public class ImagemBitmap implements ComponenteDePainelConteudo, Posicionavel, D
     }
     //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc="GETs & SETs">
+    //<editor-fold defaultstate="collapsed" desc="GETTERS & SETTERS">
     /**
      * Retorna a imagem importada no formato Image.
      *
@@ -205,7 +206,7 @@ public class ImagemBitmap implements ComponenteDePainelConteudo, Posicionavel, D
         return (BufferedImage) imagem;
     }
 
-    public JLabel getObjetoJLable() {
+    public JLabel getObjetoJLabel() {
         return imagemLabel;
     }
 
@@ -226,6 +227,14 @@ public class ImagemBitmap implements ComponenteDePainelConteudo, Posicionavel, D
      */
     public boolean isImportouImagem() {
         return importouImagem;
+    }
+    
+    public void setTextoDeRotulo(String novoTexto){
+        imagemLabel.setText(novoTexto);
+    }
+    
+    public void mudarPosicaoTextoDeRotulo(Boolean ficarLadoDireito){
+        imagemLabel.setHorizontalAlignment(0);
     }
     //</editor-fold>
 

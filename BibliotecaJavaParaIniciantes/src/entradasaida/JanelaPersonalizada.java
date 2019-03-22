@@ -147,7 +147,7 @@ public class JanelaPersonalizada implements Posicionavel, Dimensionavel {
 
     public void setCorDeFundo(String codigoHexaCor) {
         Cor novaCor = new Cor(codigoHexaCor);
-        janela.setBackground(novaCor.getColor());
+        janela.setBackground(novaCor.getObjetoColor());
     }
     
     public JFrame getJFrame(){
@@ -401,7 +401,7 @@ public class JanelaPersonalizada implements Posicionavel, Dimensionavel {
     //<editor-fold defaultstate="collapsed" desc="Classe aninhada Janela">
     private class Janela extends JFrame {
 
-        Boolean telaCheia;
+        Boolean telaCheia = false;
 
         //<editor-fold defaultstate="collapsed" desc="Construtores">
         public Janela() {

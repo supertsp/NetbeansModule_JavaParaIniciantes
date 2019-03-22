@@ -34,10 +34,10 @@ public class Cor {
 
     private Color cor;
     private String codigoHexa;
-    private int R;
-    private int G;
-    private int B;
-    private int A;
+    private Integer R;
+    private Integer G;
+    private Integer B;
+    private Integer A;
 
     //Auxiliares
     private enum CorCodigo {
@@ -59,13 +59,17 @@ public class Cor {
     public Cor(String codigoHexadecimal) {
         inicializarAtributos(codigoHexadecimal);
     }
-
-    /**
-     * Inicializa CorRGBA com um objeto Color.
-     *
-     * @param corCriada O objeto Color
-     */
-    public Cor(Color corCriada) {
+    
+    public Cor(Integer red, Integer green, Integer blue, Integer alpha){
+        this.R = red;
+        this.G = green;
+        this.B = blue;
+        this.A = alpha;
+        cor = new Color(R, G, B, A);
+        converterColorParaCodigoHexa(cor);
+    }
+       
+    private void converterColorParaCodigoHexa(Color corCriada) {
         codigoHexa = Integer.toHexString(corCriada.getRed()).charAt(0) == '0'
                 ? "00"
                 : Integer.toHexString(corCriada.getRed());
@@ -81,8 +85,6 @@ public class Cor {
         codigoHexa += Integer.toHexString(corCriada.getAlpha()).charAt(0) == '0'
                 ? "00"
                 : Integer.toHexString(corCriada.getAlpha());
-
-        inicializarAtributos(codigoHexa);
     }
     //</editor-fold>
 
@@ -210,7 +212,7 @@ public class Cor {
      *
      * @return Color
      */
-    public Color getColor() {
+    public Color getObjetoColor() {
         return cor;
     }
 

@@ -35,27 +35,34 @@ import java.awt.Font;
 public class FonteTexto {
 
     protected Font fonte;
-    protected String URL;
-    protected Boolean importouFonteTexto;
+    protected String URL = "";
+    protected Boolean importouFonteTexto = false;
+    protected Boolean importouViaURL = false;
+
+    public FonteTexto(Integer tamanhoCaraInteger, String nomeFonteInstaladaNoComputador) {
+        iniciarFonteViaSistema(tamanhoCaraInteger, nomeFonteInstaladaNoComputador);
+    }
 
     public FonteTexto(String URL, Integer tamanhoCaractere) {
         this.URL = URL;
-        initFonteURL(tamanhoCaractere);
+        iniciartFonteViaURL(tamanhoCaractere);
     }
 
     /**
      * Importa um arquivo de Fonte.
      */
-    private void initFonteURL(Integer tamanhoCaractere) {
+    private void iniciartFonteViaURL(Integer tamanhoCaractere) {
+        importouViaURL = true;
+        
         if (URL.substring(URL.length() - 3).contains("ttf")) {
             try {
                 fonte = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream(URL));
                 fonte = fonte.deriveFont(Font.PLAIN, tamanhoCaractere);
-                importouFonteTexto = true;
+                importouFonteTexto = true;                
             } catch (Exception e) {
                 importouFonteTexto = false;
                 System.out.println(
-                          "+------------------------------------+\n"
+                        "+------------------------------------+\n"
                         + "| Erro ao importar a FonteTexto! :(\n"
                         + "| URL: " + URL + "\n"
                         + "+------------------------------------+\n"
@@ -64,12 +71,54 @@ public class FonteTexto {
         } else {
             importouFonteTexto = false;
             System.out.println(
-                      "+----------------------------------+\n"
+                    "+----------------------------------+\n"
                     + "| Extensão de arquivo inválida! :( |\n"
                     + "| Extensão permitada: ttf          |\n"
                     + "+----------------------------------+\n"
             );
         }
+    }
+    
+    private void iniciarFonteViaSistema(Integer tamanhoCaractere, String nomeFonte){
+        importouViaURL = false;
+        
+        fonte = new Font(nomeFonte, Font.PLAIN, tamanhoCaractere);
+        
+        if (fonte.getFamily().equalsIgnoreCase("Dialog")) {
+            importouFonteTexto = false;
+            System.out.println(
+                      "+---------------------------------------------------+\n"
+                    + "| Erro ao importar a FonteTexto! :(\n"
+                    + "| Fonte inexistente no Sistema: " + nomeFonte + "\n"
+                    + "+---------------------------------------------------+\n"
+            );
+        }
+        else{
+            importouFonteTexto = true;
+        }        
+    }
+
+    public Font getObjetoFont() {
+        return fonte;
+    }
+
+    public Integer getTamanhoCaractere() {
+        return fonte.getSize();
+    }
+
+    public void setTamanhoCaractere(Integer tamanhoCaractere) {
+        iniciartFonteViaURL(tamanhoCaractere);
+    }
+
+    @Override
+    public String toString() {
+        return "FonteTexto{\n" + 
+//                "  fonte=" + Font. + "\n" +
+                "  fonte=" + fonte.getFamily() + "\n" +
+                "  URL=" + URL + "\n" +
+                "  importouFonteTexto=" + importouFonteTexto + "\n" +
+                "  importouViaURL=" + importouViaURL + "\n" +
+                "}";
     }
 
 }

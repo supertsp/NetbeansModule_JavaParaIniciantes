@@ -18,8 +18,31 @@
 //</editor-fold>
 package entradasaida;
 
+import conteudojanelapersonalizada.*;
+import conteudojanelapersonalizada.PainelConteudo;
+import static entradasaida.JanelaPersonalizada.getAlturaTelaComputador;
+import static entradasaida.JanelaPersonalizada.getComprimentoTelaComputador;
+import java.awt.Color;
+import java.awt.ComponentOrientation;
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.Insets;
+import java.awt.Rectangle;
+import java.awt.SystemColor;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.math.BigDecimal;
+import javafx.geometry.HorizontalDirection;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.*;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
 
 /**
  * Classe com métodos estáticos que facilitam as operações de "leitura" e
@@ -36,8 +59,8 @@ import static javax.swing.JOptionPane.*;
  * precisão. Ex.: 1f, 0.5f, .7f ou 50100200.539f;
  * <dd>• <code>Double</code>: dado (objeto) do tipo numérico real de precisão
  * dupla. Ex.: 1d, 0.5, .7 ou 50100200.539;
- * <dd>• <code>BigDecimal</code>: dado (objeto) do tipo numérico real de precisão
- * exata. Ex.: new BigDecimal("1.46") ou new BigDecimal("50100200.539")
+ * <dd>• <code>BigDecimal</code>: dado (objeto) do tipo numérico real de
+ * precisão exata. Ex.: new BigDecimal("1.46") ou new BigDecimal("50100200.539")
  * </dl>
  *
  * <br><br><small>Criado em: 06/03/2019</small>
@@ -46,6 +69,12 @@ import static javax.swing.JOptionPane.*;
  * @version 1.0
  */
 public class JanelaPopup {
+
+    private static Integer x = new Integer(1);
+    private static BasicLabel mensagemFinal = new BasicLabel();
+    private static Cor corCinzaEscuro = new Cor("3c3f41");
+    private static Cor corCinzaClaro = new Cor("727a7c");
+    
 
     // <editor-fold defaultstate="collapsed" desc="Constantes String NOVA_LINHA_**">
     /**
@@ -109,15 +138,44 @@ public class JanelaPopup {
      */
     public static String lerString(String mensagemParaUsuario) {
         try {
+
+            UIManager.put("OptionPane.background", corCinzaEscuro.getObjetoColor());
+            UIManager.put("Panel.background", corCinzaEscuro.getObjetoColor());
+            UIManager.put("Button.background", corCinzaClaro.getObjetoColor());
+            UIManager.put("Button.foreground", Color.red);
+            Border borda = BorderFactory.createMatteBorder(0, 0, 0, 0, Color.black);
+            UIManager.put("Button.border", borda);
+//            UIManager.put("Button.borderPainted", false);
+            Rectangle areaBotao = new Rectangle(100, 50);
+            UIManager.put("JComponent.margin", new Insets(7, 15, 7, 15));
+            UIManager.put("Button.defaultMargin", new Insets(7, 15, 7, 15));
+
+            ImagemBitmap imagem = new ImagemBitmap("/javaparainiciantes/girl.png", 15, 200);
+            imagem.setTextoDeRotulo("olá eu sou uma menina :)");
+            System.out.println(JOptionPane.getRootFrame());
+            imagem.getObjetoJLabel().setHorizontalAlignment(JLabel.CENTER);
+            mensagemFinal.setText(mensagemParaUsuario);
+
             return showInputDialog(
                     null,
-                    mensagemParaUsuario,
+                    //                    imagem.getObjetoJLabel(),
+                    //                    mensagemParaUsuario,
+                    mensagemFinal,
                     "Janela para Leitura de String",
                     PLAIN_MESSAGE
             );
         } catch (Exception e) {
             return null;
         }
+    }
+
+    private static JLabel createLabel(String text, Color color, int x, int y) {
+        JLabel label = new JLabel(text);
+        label.setDoubleBuffered(true);
+        label.setVerticalAlignment(JButton.TOP);
+        label.setHorizontalAlignment(JButton.CENTER);
+        label.setBounds(x, y, 100, 90);
+        return label;
     }
     // </editor-fold>
 
@@ -286,6 +344,7 @@ public class JanelaPopup {
      */
     public static Integer lerInteger(String mensagemParaUsuario) {
         try {
+
             return Integer.parseInt(
                     showInputDialog(
                             null,
@@ -458,14 +517,15 @@ public class JanelaPopup {
         }
     }
     // </editor-fold>
-    
+
     // <editor-fold defaultstate="collapsed" desc="lerBigDecimal(String mensagemParaUsuario) : BigDecimal|null">
     /**
      * Executa a operção de "leitura" de uma variável (objeto) do tipo
      * <code>BigDecimal</code>. <br>
      *
      * @param mensagemParaUsuario A mensagem a ser exibida para o usuário.
-     * @return O <code>BigDecimal</code> lido ou <code>null</code> em caso de erro.
+     * @return O <code>BigDecimal</code> lido ou <code>null</code> em caso de
+     * erro.
      */
     public static BigDecimal lerBigDecimal(String mensagemParaUsuario) {
         try {
@@ -482,7 +542,7 @@ public class JanelaPopup {
         }
     }
     // </editor-fold>
-    
+
     // <editor-fold defaultstate="collapsed" desc="lerBigDecimal(String mensagemParaUsuario, Object[s] variaveisDeSubstituicao) : BigDecimal|null">
     /**
      * Executa a operção de "leitura" de uma variável (objeto) do tipo
@@ -502,7 +562,8 @@ public class JanelaPopup {
      * @param mensagemParaUsuario A mensagem a ser exibida para o usuário.
      * @param variaveisDeSubstituicao As variáveis que irão substituir as
      * Strings especiais.
-     * @return O <code>BigDecimal</code> lido ou <code>null</code> em caso de erro.
+     * @return O <code>BigDecimal</code> lido ou <code>null</code> em caso de
+     * erro.
      */
     public static BigDecimal lerBigDecimal(String mensagemParaUsuario, Object... variaveisDeSubstituicao) {
         try {
@@ -519,7 +580,7 @@ public class JanelaPopup {
         }
     }
     // </editor-fold>
-        
+
     // <editor-fold defaultstate="collapsed" desc="escreverString(String mensagemOuVariavel) : void">
     /**
      * Executa a operção de "escrita" de uma variável (objeto) do tipo
@@ -617,4 +678,33 @@ public class JanelaPopup {
         );
     }
     // </editor-fold>
+
+//##########################################################################################
+    //<editor-fold defaultstate="collapsed" desc="Classe aninhada Janela">
+    private static class BasicLabel extends JTextArea {
+
+        //<editor-fold defaultstate="collapsed" desc="Construtores">
+        public BasicLabel() {
+            super();
+//            super.set
+//            setHorizontalAlignment(JLabel.LEFT);
+            super.setEditable(false);
+//            setBackground(SystemColor.control);
+//http://nadeausoftware.com/articles/2010/12/java_tip_how_use_systemcolors_access_os_user_interface_theme_colors
+            
+//            super.setMargin(new Insets);
+            Cor corCinzaEscuro = new Cor("3c3f41");
+            setBackground(corCinzaEscuro.getObjetoColor());
+            setForeground(Color.white);
+            setDoubleBuffered(true);
+            FonteTexto fontMonospaced = new FonteTexto(20, "Consolas");
+            setFont(fontMonospaced.getObjetoFont());
+
+        }
+        //</editor-fold>
+
+    }// nested class
+    //</editor-fold>
+//##########################################################################################
+
 }

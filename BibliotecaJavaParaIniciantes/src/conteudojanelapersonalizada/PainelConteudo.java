@@ -61,7 +61,7 @@ public class PainelConteudo implements Posicionavel, Dimensionavel {
 
     public void setCorDeFundo(String codigoHexaCor) {
         Cor novaCor = new Cor(codigoHexaCor);
-        painelBruto.setBackground(novaCor.getColor());
+        painelBruto.setBackground(novaCor.getObjetoColor());
     }
 
     //<editor-fold defaultstate="collapsed" desc="adicionarComponenteDePainelConteudo(...)">
