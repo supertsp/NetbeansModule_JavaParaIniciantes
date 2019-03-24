@@ -35,6 +35,7 @@ import java.math.BigDecimal;
 import javafx.geometry.HorizontalDirection;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -69,12 +70,6 @@ import javax.swing.border.Border;
  * @version 1.0
  */
 public class JanelaPopup {
-
-    private static Integer x = new Integer(1);
-    private static BasicLabel mensagemFinal = new BasicLabel();
-    private static Cor corCinzaEscuro = new Cor("3c3f41");
-    private static Cor corCinzaClaro = new Cor("727a7c");
-    
 
     // <editor-fold defaultstate="collapsed" desc="Constantes String NOVA_LINHA_**">
     /**
@@ -127,10 +122,43 @@ public class JanelaPopup {
      */
     public static final String NOVA_LINHA_10 = "\n\n\n\n\n\n\n\n\n\n";
     // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="iniciarTemplateDePopup() : void">
+    private static Integer x = new Integer(1);
+    private static BasicLabel mensagemFinal = new BasicLabel();
+    private static FonteTexto fontMonospaced = new FonteTexto(15, FonteTexto.Espessura.NEGRITO_ITALICO, "Consolas");
+    private static Cor corCinzaEscuro = new Cor("3c3f41");
+    private static Cor corCinzaClaro = new Cor("727a7c");
+//    private static Cor corCinzaMaisClaro = new Cor("b4c1c4");
+    
+    private static void iniciarTemplateDePopup() {
+        //site dicas:
+        //http://www.java2s.com/Tutorial/Java/0240__Swing/SettingJOptionPanebuttonlabelstoFrench.htm
+        
+        //Mudando JOptionPane
+        UIManager.put("OptionPane.background", corCinzaEscuro.getObjetoColor());
+        UIManager.put("OptionPane.okButtonText", "Inserir");
 
+        //Mudando JPanel
+        UIManager.put("Panel.background", corCinzaEscuro.getObjetoColor());
+
+        //Mudando JButton
+        UIManager.put("Button.background", corCinzaClaro.getObjetoColor());
+        UIManager.put("Button.foreground", Color.white);
+        UIManager.put("Button.font", fontMonospaced.getObjetoFont());
+
+        //Mudando JTextField
+        Border bordaInput = BorderFactory.createMatteBorder(0, 0, 2, 0, Color.gray);
+        UIManager.put("TextField.background", corCinzaEscuro.getObjetoColor());
+        UIManager.put("TextField.foreground", Color.white);
+        UIManager.put("TextField.border", bordaInput);
+        UIManager.put("TextField.font", mensagemFinal.getFont());
+    }
+    // </editor-fold>
+    
     // <editor-fold defaultstate="collapsed" desc="lerString(String mensagemParaUsuario) : String|null">
     /**
-     * Executa a operção de "leitura" de uma variável (objeto) do tipo
+     * Executa a operação de "leitura" de uma variável (objeto) do tipo
      * <code>String</code>.
      *
      * @param mensagemParaUsuario A mensagem a ser exibida para o usuário.
@@ -138,50 +166,23 @@ public class JanelaPopup {
      */
     public static String lerString(String mensagemParaUsuario) {
         try {
-
-            UIManager.put("OptionPane.background", corCinzaEscuro.getObjetoColor());
-            UIManager.put("Panel.background", corCinzaEscuro.getObjetoColor());
-            UIManager.put("Button.background", corCinzaClaro.getObjetoColor());
-            UIManager.put("Button.foreground", Color.red);
-            Border borda = BorderFactory.createMatteBorder(0, 0, 0, 0, Color.black);
-            UIManager.put("Button.border", borda);
-//            UIManager.put("Button.borderPainted", false);
-            Rectangle areaBotao = new Rectangle(100, 50);
-            UIManager.put("JComponent.margin", new Insets(7, 15, 7, 15));
-            UIManager.put("Button.defaultMargin", new Insets(7, 15, 7, 15));
-
-            ImagemBitmap imagem = new ImagemBitmap("/javaparainiciantes/girl.png", 15, 200);
-            imagem.setTextoDeRotulo("olá eu sou uma menina :)");
-            System.out.println(JOptionPane.getRootFrame());
-            imagem.getObjetoJLabel().setHorizontalAlignment(JLabel.CENTER);
+            iniciarTemplateDePopup();
             mensagemFinal.setText(mensagemParaUsuario);
-
             return showInputDialog(
                     null,
-                    //                    imagem.getObjetoJLabel(),
-                    //                    mensagemParaUsuario,
                     mensagemFinal,
-                    "Janela para Leitura de String",
+                    "Operação: LEITURA  -  Tipo: String",
                     PLAIN_MESSAGE
             );
         } catch (Exception e) {
             return null;
         }
     }
-
-    private static JLabel createLabel(String text, Color color, int x, int y) {
-        JLabel label = new JLabel(text);
-        label.setDoubleBuffered(true);
-        label.setVerticalAlignment(JButton.TOP);
-        label.setHorizontalAlignment(JButton.CENTER);
-        label.setBounds(x, y, 100, 90);
-        return label;
-    }
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="lerString(String mensagemParaUsuario, Object[s] formatParams) : String|null">
     /**
-     * Executa a operção de "leitura" de uma variável (objeto) do tipo
+     * Executa a operação de "leitura" de uma variável (objeto) do tipo
      * <code>String</code>. <br>
      * Com este método é possível formatar a mensagem com Strings especiais:
      * <dl>
@@ -202,10 +203,14 @@ public class JanelaPopup {
      */
     public static String lerString(String mensagemParaUsuario, Object... variaveisDeSubstituicao) {
         try {
+            iniciarTemplateDePopup();
+            mensagemFinal.setText(String.format(
+                    mensagemParaUsuario, variaveisDeSubstituicao)
+            );
             return showInputDialog(
                     null,
-                    String.format(mensagemParaUsuario, variaveisDeSubstituicao),
-                    "Janela para Leitura de String",
+                    mensagemFinal,
+                    "Operação: LEITURA  -  Tipo: String",
                     PLAIN_MESSAGE
             );
         } catch (Exception e) {
@@ -216,7 +221,7 @@ public class JanelaPopup {
 
     // <editor-fold defaultstate="collapsed" desc="lerCharacter(String mensagemParaUsuario) : Character|null">
     /**
-     * Executa a operção de "leitura" de uma variável (objeto) do tipo
+     * Executa a operação de "leitura" de uma variável (objeto) do tipo
      * <code>Character</code>. <br>
      *
      * @param mensagemParaUsuario A mensagem a ser exibida para o usuário.
@@ -225,10 +230,12 @@ public class JanelaPopup {
      */
     public static Character lerCharacter(String mensagemParaUsuario) {
         try {
+            iniciarTemplateDePopup();
+            mensagemFinal.setText(mensagemParaUsuario);
             return showInputDialog(
                     null,
-                    mensagemParaUsuario,
-                    "Janela para Leitura de Character",
+                    mensagemFinal,
+                    "Operação: LEITURA  -  Tipo: Character",
                     PLAIN_MESSAGE
             ).charAt(0);
         } catch (Exception e) {
@@ -239,7 +246,7 @@ public class JanelaPopup {
 
     // <editor-fold defaultstate="collapsed" desc="lerCharacter(String mensagemParaUsuario, Object[s] variaveisDeSubstituicao) : Character|null">
     /**
-     * Executa a operção de "leitura" de uma variável (objeto) do tipo
+     * Executa a operação de "leitura" de uma variável (objeto) do tipo
      * <code>Character</code>. <br>
      * Com este método é possível formatar a mensagem com Strings especiais:
      * <dl>
@@ -261,10 +268,14 @@ public class JanelaPopup {
      */
     public static Character lerCharacter(String mensagemParaUsuario, Object... variaveisDeSubstituicao) {
         try {
+            iniciarTemplateDePopup();
+            mensagemFinal.setText(String.format(
+                    mensagemParaUsuario, variaveisDeSubstituicao)
+            );
             return showInputDialog(
                     null,
-                    String.format(mensagemParaUsuario, variaveisDeSubstituicao),
-                    "Janela para Leitura de Character",
+                    mensagemFinal,
+                    "Operação: LEITURA  -  Tipo: Character",
                     PLAIN_MESSAGE
             ).charAt(0);
         } catch (Exception e) {
@@ -275,7 +286,7 @@ public class JanelaPopup {
 
     // <editor-fold defaultstate="collapsed" desc="lerBoolean(String mensagemParaUsuario) : Boolean|null">
     /**
-     * Executa a operção de "leitura" de uma variável (objeto) do tipo
+     * Executa a operação de "leitura" de uma variável (objeto) do tipo
      * <code>Boolean</code>. <br>
      *
      * @param mensagemParaUsuario A mensagem a ser exibida para o usuário.
@@ -283,11 +294,14 @@ public class JanelaPopup {
      */
     public static Boolean lerBoolean(String mensagemParaUsuario) {
         try {
+            iniciarTemplateDePopup();
+            mensagemFinal.setText(mensagemParaUsuario);
+
             return Boolean.parseBoolean(
                     showInputDialog(
                             null,
-                            mensagemParaUsuario,
-                            "Janela para Leitura de Boolean",
+                            mensagemFinal,
+                            "Operação: LEITURA  -  Tipo: Boolean",
                             PLAIN_MESSAGE
                     )
             );
@@ -299,7 +313,7 @@ public class JanelaPopup {
 
     // <editor-fold defaultstate="collapsed" desc="lerBoolean(String mensagemParaUsuario, Object[s] variaveisDeSubstituicao) : Boolean|null">
     /**
-     * Executa a operção de "leitura" de uma variável (objeto) do tipo
+     * Executa a operação de "leitura" de uma variável (objeto) do tipo
      * <code>Boolean</code>. <br>
      * Com este método é possível formatar a mensagem com Strings especiais:
      * <dl>
@@ -320,11 +334,16 @@ public class JanelaPopup {
      */
     public static Boolean lerBoolean(String mensagemParaUsuario, Object... variaveisDeSubstituicao) {
         try {
+            iniciarTemplateDePopup();
+            mensagemFinal.setText(String.format(
+                    mensagemParaUsuario, variaveisDeSubstituicao)
+            );
+
             return Boolean.parseBoolean(
                     showInputDialog(
                             null,
-                            String.format(mensagemParaUsuario, variaveisDeSubstituicao),
-                            "Janela para Leitura de Boolean",
+                            mensagemFinal,
+                            "Operação: LEITURA  -  Tipo: Boolean",
                             PLAIN_MESSAGE
                     )
             );
@@ -336,7 +355,7 @@ public class JanelaPopup {
 
     // <editor-fold defaultstate="collapsed" desc="lerInteger(String mensagemParaUsuario) : Integer|null">
     /**
-     * Executa a operção de "leitura" de uma variável (objeto) do tipo
+     * Executa a operação de "leitura" de uma variável (objeto) do tipo
      * <code>Integer</code>. <br>
      *
      * @param mensagemParaUsuario A mensagem a ser exibida para o usuário.
@@ -344,12 +363,14 @@ public class JanelaPopup {
      */
     public static Integer lerInteger(String mensagemParaUsuario) {
         try {
+            iniciarTemplateDePopup();
+            mensagemFinal.setText(mensagemParaUsuario);
 
             return Integer.parseInt(
                     showInputDialog(
                             null,
-                            mensagemParaUsuario,
-                            "Janela para Leitura de Integer",
+                            mensagemFinal,
+                            "Operação: LEITURA  -  Tipo: Integer",
                             PLAIN_MESSAGE
                     )
             );
@@ -361,7 +382,7 @@ public class JanelaPopup {
 
     // <editor-fold defaultstate="collapsed" desc="lerInteger(String mensagemParaUsuario, Object[s] variaveisDeSubstituicao) : Integer|null">
     /**
-     * Executa a operção de "leitura" de uma variável (objeto) do tipo
+     * Executa a operação de "leitura" de uma variável (objeto) do tipo
      * <code>Integer</code>. <br>
      * Com este método é possível formatar a mensagem com Strings especiais:
      * <dl>
@@ -382,11 +403,16 @@ public class JanelaPopup {
      */
     public static Integer lerInteger(String mensagemParaUsuario, Object... variaveisDeSubstituicao) {
         try {
+            iniciarTemplateDePopup();
+            mensagemFinal.setText(String.format(
+                    mensagemParaUsuario, variaveisDeSubstituicao)
+            );
+
             return Integer.parseInt(
                     showInputDialog(
                             null,
-                            String.format(mensagemParaUsuario, variaveisDeSubstituicao),
-                            "Janela para Leitura de Integer",
+                            mensagemFinal,
+                            "Operação: LEITURA  -  Tipo: Integer",
                             PLAIN_MESSAGE
                     )
             );
@@ -398,7 +424,7 @@ public class JanelaPopup {
 
     // <editor-fold defaultstate="collapsed" desc="lerFloat(String mensagemParaUsuario) : Float|null">
     /**
-     * Executa a operção de "leitura" de uma variável (objeto) do tipo
+     * Executa a operação de "leitura" de uma variável (objeto) do tipo
      * <code>Float</code>. <br>
      *
      * @param mensagemParaUsuario A mensagem a ser exibida para o usuário.
@@ -406,11 +432,14 @@ public class JanelaPopup {
      */
     public static Float lerFloat(String mensagemParaUsuario) {
         try {
+            iniciarTemplateDePopup();
+            mensagemFinal.setText(mensagemParaUsuario);
+
             return Float.parseFloat(
                     showInputDialog(
                             null,
-                            mensagemParaUsuario,
-                            "Janela para Leitura de Float",
+                            mensagemFinal,
+                            "Operação: LEITURA  -  Tipo: Float",
                             PLAIN_MESSAGE
                     )
             );
@@ -422,7 +451,7 @@ public class JanelaPopup {
 
     // <editor-fold defaultstate="collapsed" desc="lerFloat(String mensagemParaUsuario, Object[s] variaveisDeSubstituicao) : Float|null">
     /**
-     * Executa a operção de "leitura" de uma variável (objeto) do tipo
+     * Executa a operação de "leitura" de uma variável (objeto) do tipo
      * <code>Float</code>. <br>
      * Com este método é possível formatar a mensagem com Strings especiais:
      * <dl>
@@ -443,11 +472,16 @@ public class JanelaPopup {
      */
     public static Float lerFloat(String mensagemParaUsuario, Object... variaveisDeSubstituicao) {
         try {
+            iniciarTemplateDePopup();
+            mensagemFinal.setText(String.format(
+                    mensagemParaUsuario, variaveisDeSubstituicao)
+            );
+
             return Float.parseFloat(
                     showInputDialog(
                             null,
-                            String.format(mensagemParaUsuario, variaveisDeSubstituicao),
-                            "Janela para Leitura de Float",
+                            mensagemFinal,
+                            "Operação: LEITURA  -  Tipo: Float",
                             PLAIN_MESSAGE
                     )
             );
@@ -459,7 +493,7 @@ public class JanelaPopup {
 
     // <editor-fold defaultstate="collapsed" desc="lerDouble(String mensagemParaUsuario) : Double|null">
     /**
-     * Executa a operção de "leitura" de uma variável (objeto) do tipo
+     * Executa a operação de "leitura" de uma variável (objeto) do tipo
      * <code>Double</code>. <br>
      *
      * @param mensagemParaUsuario A mensagem a ser exibida para o usuário.
@@ -467,11 +501,14 @@ public class JanelaPopup {
      */
     public static Double lerDouble(String mensagemParaUsuario) {
         try {
+            iniciarTemplateDePopup();
+            mensagemFinal.setText(mensagemParaUsuario);
+
             return Double.parseDouble(
                     showInputDialog(
                             null,
-                            mensagemParaUsuario,
-                            "Janela para Leitura de Double",
+                            mensagemFinal,
+                            "Operação: LEITURA  -  Tipo: Double",
                             PLAIN_MESSAGE
                     )
             );
@@ -483,7 +520,7 @@ public class JanelaPopup {
 
     // <editor-fold defaultstate="collapsed" desc="lerDouble(String mensagemParaUsuario, Object[s] variaveisDeSubstituicao) : Double|null">
     /**
-     * Executa a operção de "leitura" de uma variável (objeto) do tipo
+     * Executa a operação de "leitura" de uma variável (objeto) do tipo
      * <code>Double</code>. <br>
      * Com este método é possível formatar a mensagem com Strings especiais:
      * <dl>
@@ -504,11 +541,16 @@ public class JanelaPopup {
      */
     public static Double lerDouble(String mensagemParaUsuario, Object... variaveisDeSubstituicao) {
         try {
+            iniciarTemplateDePopup();
+            mensagemFinal.setText(String.format(
+                    mensagemParaUsuario, variaveisDeSubstituicao)
+            );
+
             return Double.parseDouble(
                     showInputDialog(
                             null,
-                            String.format(mensagemParaUsuario, variaveisDeSubstituicao),
-                            "Janela para Leitura de Double",
+                            mensagemFinal,
+                            "Operação: LEITURA  -  Tipo: Double",
                             PLAIN_MESSAGE
                     )
             );
@@ -520,7 +562,7 @@ public class JanelaPopup {
 
     // <editor-fold defaultstate="collapsed" desc="lerBigDecimal(String mensagemParaUsuario) : BigDecimal|null">
     /**
-     * Executa a operção de "leitura" de uma variável (objeto) do tipo
+     * Executa a operação de "leitura" de uma variável (objeto) do tipo
      * <code>BigDecimal</code>. <br>
      *
      * @param mensagemParaUsuario A mensagem a ser exibida para o usuário.
@@ -529,11 +571,14 @@ public class JanelaPopup {
      */
     public static BigDecimal lerBigDecimal(String mensagemParaUsuario) {
         try {
+            iniciarTemplateDePopup();
+            mensagemFinal.setText(mensagemParaUsuario);
+
             return new BigDecimal(
                     showInputDialog(
                             null,
-                            mensagemParaUsuario,
-                            "Janela para Leitura de BigDecimal",
+                            mensagemFinal,
+                            "Operação: LEITURA  -  Tipo: BigDecimal",
                             PLAIN_MESSAGE
                     )
             );
@@ -545,7 +590,7 @@ public class JanelaPopup {
 
     // <editor-fold defaultstate="collapsed" desc="lerBigDecimal(String mensagemParaUsuario, Object[s] variaveisDeSubstituicao) : BigDecimal|null">
     /**
-     * Executa a operção de "leitura" de uma variável (objeto) do tipo
+     * Executa a operação de "leitura" de uma variável (objeto) do tipo
      * <code>BigDecimal</code>. <br>
      * Com este método é possível formatar a mensagem com Strings especiais:
      * <dl>
@@ -567,11 +612,16 @@ public class JanelaPopup {
      */
     public static BigDecimal lerBigDecimal(String mensagemParaUsuario, Object... variaveisDeSubstituicao) {
         try {
+            iniciarTemplateDePopup();
+            mensagemFinal.setText(String.format(
+                    mensagemParaUsuario, variaveisDeSubstituicao)
+            );
+
             return new BigDecimal(
                     showInputDialog(
                             null,
-                            String.format(mensagemParaUsuario, variaveisDeSubstituicao),
-                            "Janela para Leitura de BigDecimal",
+                            mensagemFinal,
+                            "Operação: LEITURA  -  Tipo: BigDecimal",
                             PLAIN_MESSAGE
                     )
             );
@@ -583,17 +633,21 @@ public class JanelaPopup {
 
     // <editor-fold defaultstate="collapsed" desc="escreverString(String mensagemOuVariavel) : void">
     /**
-     * Executa a operção de "escrita" de uma variável (objeto) do tipo
+     * Executa a operação de "escrita" de uma variável (objeto) do tipo
      * <code>String</code>. <br>
      *
      * @param mensagemOuVariavel A mensagem ou variável a ser exibida para o
      * usuário.
      */
     public static void escreverString(String mensagemOuVariavel) {
+        iniciarTemplateDePopup();
+        UIManager.put("OptionPane.okButtonText", "Fechar");
+        mensagemFinal.setText(mensagemOuVariavel);
+
         showMessageDialog(
                 null,
-                mensagemOuVariavel,
-                "Janela para Escrita de String",
+                mensagemFinal,
+                "Operação: ESCRITA  -  Tipo: String",
                 PLAIN_MESSAGE
         );
     }
@@ -601,7 +655,7 @@ public class JanelaPopup {
 
     // <editor-fold defaultstate="collapsed" desc="escreverString(String mensagemOuVariavel, Object[s] variaveisDeSubstituicao) : void">
     /**
-     * Executa a operção de "escrita" de uma variável (objeto) do tipo
+     * Executa a operação de "escrita" de uma variável (objeto) do tipo
      * <code>String</code>. <br>
      * Com este método é possível formatar a mensagem com Strings especiais:
      * <dl>
@@ -621,10 +675,16 @@ public class JanelaPopup {
      * Strings especiais.
      */
     public static void escreverString(String mensagemOuVariavel, Object... variaveisDeSubstituicao) {
+        iniciarTemplateDePopup();
+        UIManager.put("OptionPane.okButtonText", "Fechar");
+        mensagemFinal.setText(String.format(
+                mensagemOuVariavel, variaveisDeSubstituicao)
+        );
+        
         showMessageDialog(
                 null,
-                String.format(mensagemOuVariavel, variaveisDeSubstituicao),
-                "Janela para Escrita de String",
+                mensagemFinal,
+                "Operação: ESCRITA  -  Tipo: String",
                 PLAIN_MESSAGE
         );
     }
@@ -632,17 +692,21 @@ public class JanelaPopup {
 
     // <editor-fold defaultstate="collapsed" desc="escreverLinhaDeString(String mensagemOuVariavel) : void">
     /**
-     * Executa a operção de "escrita" de uma variável (objeto) do tipo
+     * Executa a operação de "escrita" de uma variável (objeto) do tipo
      * <code>String</code> e logo após faz uma quebra de linha. <br>
      *
      * @param mensagemOuVariavel A mensagem ou variável a ser exibida para o
      * usuário.
      */
     public static void escreverLinhaDeString(String mensagemOuVariavel) {
+        iniciarTemplateDePopup();
+        UIManager.put("OptionPane.okButtonText", "Fechar");
+        mensagemFinal.setText(mensagemOuVariavel + NOVA_LINHA_01);
+
         showMessageDialog(
                 null,
-                mensagemOuVariavel + NOVA_LINHA_01,
-                "Janela para Escrita de String",
+                mensagemFinal,
+                "Operação: ESCRITA  -  Tipo: String",
                 PLAIN_MESSAGE
         );
     }
@@ -650,7 +714,7 @@ public class JanelaPopup {
 
     // <editor-fold defaultstate="collapsed" desc="escreverLinhaDeString(String mensagemOuVariavel, Object[s] variaveisDeSubstituicao) : void">
     /**
-     * Executa a operção de "escrita" de uma variável (objeto) do tipo
+     * Executa a operação de "escrita" de uma variável (objeto) do tipo
      * <code>String</code> e logo após faz uma quebra de linha. <br>
      * Com este método é possível formatar a mensagem com Strings especiais:
      * <dl>
@@ -670,17 +734,23 @@ public class JanelaPopup {
      * Strings especiais.
      */
     public static void escreverLinhaDeString(String mensagemOuVariavel, Object... variaveisDeSubstituicao) {
+        iniciarTemplateDePopup();
+        UIManager.put("OptionPane.okButtonText", "Fechar");
+        mensagemFinal.setText(String.format(
+                mensagemOuVariavel + NOVA_LINHA_01, variaveisDeSubstituicao)
+        );
+        
         showMessageDialog(
                 null,
-                String.format(mensagemOuVariavel, variaveisDeSubstituicao) + NOVA_LINHA_01,
-                "Janela para Escrita de String",
+                mensagemFinal,
+                "Operação: ESCRITA  -  Tipo: String",
                 PLAIN_MESSAGE
         );
     }
     // </editor-fold>
 
 //##########################################################################################
-    //<editor-fold defaultstate="collapsed" desc="Classe aninhada Janela">
+    //<editor-fold defaultstate="collapsed" desc="Classe aninhada BasicLabel">
     private static class BasicLabel extends JTextArea {
 
         //<editor-fold defaultstate="collapsed" desc="Construtores">
@@ -691,11 +761,14 @@ public class JanelaPopup {
             super.setEditable(false);
 //            setBackground(SystemColor.control);
 //http://nadeausoftware.com/articles/2010/12/java_tip_how_use_systemcolors_access_os_user_interface_theme_colors
-            
+
 //            super.setMargin(new Insets);
-            Cor corCinzaEscuro = new Cor("3c3f41");
-            setBackground(corCinzaEscuro.getObjetoColor());
-            setForeground(Color.white);
+            Cor corTemp = new Cor("3c3f41");
+            setBackground(corTemp.getObjetoColor());
+
+            corTemp = new Cor("b4c1c4");
+            setForeground(corTemp.getObjetoColor());
+
             setDoubleBuffered(true);
             FonteTexto fontMonospaced = new FonteTexto(20, "Consolas");
             setFont(fontMonospaced.getObjetoFont());

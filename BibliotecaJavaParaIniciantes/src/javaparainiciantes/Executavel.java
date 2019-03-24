@@ -11,25 +11,12 @@ import ferramentas.ExecucaoParalela;
 import ferramentas.padroes.MetodoExecutavelParalelamente;
 import java.awt.*;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
+import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import javax.swing.JComponent;
-import javax.swing.UIDefaults;
-import javax.swing.UIManager;
-import java.awt.GradientPaint;
-import java.awt.Paint;
-import java.awt.PaintContext;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
+import java.util.*;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.ColorModel;
@@ -144,11 +131,13 @@ public class Executavel {
 //        System.out.println(font);
         
         String nome = lerString(
-                "Qual é o seu nome?ssadfasfasfsdsfasa\n" + 
+                "Qual é o seu nome? kkkkkkkkkkkkkkk\n" + 
                 "a \t i \t v\n" +
                 "q \t O \t M\n"
         );
         
+        int idade = lerInteger("Qual seria sua...\n\tidade\tanos");
+        escreverLinhaDeString(nome + ", " + idade);
     }
 
     private static JButton createButton(String text, Color color, int x, int y) {
@@ -158,12 +147,14 @@ public class Executavel {
 //        button.setMargin(m);
         button.setVerticalAlignment(JButton.TOP);
         button.setHorizontalAlignment(JButton.CENTER);
-
+//        button.setm
+//        button.setBorder(border);
 //        button.setIgnoreRepaint(true);
 //        button.setBackground(color);
 //        button.setForeground(Color.black);
 //        button.setBorder(BorderFactory.createLineBorder(Color.black));
         button.setBounds(x, y, 100, 90);
+        
         return button;
     }
 
