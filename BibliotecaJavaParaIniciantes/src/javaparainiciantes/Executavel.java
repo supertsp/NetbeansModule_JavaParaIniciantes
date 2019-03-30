@@ -1,6 +1,7 @@
 package javaparainiciantes;
 
 // <editor-fold defaultstate="collapsed" desc="imports...">
+import conteudojanelapersonalizada.Cor;
 import conteudojanelapersonalizada.FonteTexto;
 import conteudojanelapersonalizada.ImagemBitmap;
 import conteudojanelapersonalizada.PainelConteudo;
@@ -130,16 +131,39 @@ public class Executavel {
 //        FonteTexto font = new FonteTexto(10, "calibri");
 //        System.out.println(font);
         
-        String nome = lerString(
+        ImagemBitmap imagem = new ImagemBitmap("/javaparainiciantes/girl.png", 15, 200);
+        imagem.setDimensao(4.5);
+//        Cor cor = new Cor("")
+//        Character variavelLida = 666;
+        BigDecimal variavelLida = lerBigDecimal(
+                imagem,
+                PosicaoImagem.INFERIOR,
                 "Qual é o seu nome? kkkkkkkkkkkkkkk\n" + 
                 "a \t i \t v\n" +
-                "q \t O \t M\n"
+                "q \t %s \t %s\n"
+//                "q \t %s \t %s\n",
+//                77, 99
         );
         
-        int idade = lerInteger("Qual seria sua...\n\tidade\tanos");
-        escreverLinhaDeString(nome + ", " + idade);
+//        int idade = lerInteger("Qual seria sua...\n\tidade\tanos");
+        escreverLinhaDeString(imagem, PosicaoImagem.SUPERIOR, variavelLida.toString());
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     private static JButton createButton(String text, Color color, int x, int y) {
         JButton button = new JButton(text);
         button.setOpaque(true);

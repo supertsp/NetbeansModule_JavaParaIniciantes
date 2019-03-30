@@ -18,23 +18,31 @@
 //</editor-fold>
 package conteudojanelapersonalizada;
 
+import conteudojanelapersonalizada.padroesprojeto.AparenciaEditavel;
 import conteudojanelapersonalizada.padroesprojeto.ComponenteDePainelConteudo;
 import conteudojanelapersonalizada.padroesprojeto.Dimensionavel;
 import conteudojanelapersonalizada.padroesprojeto.Posicionavel;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
+import javax.swing.*;
+import javax.swing.border.*;
 
-public class ImagemBitmap implements ComponenteDePainelConteudo, Posicionavel, Dimensionavel {
+public class ImagemBitmap implements
+        ComponenteDePainelConteudo,
+        Posicionavel,
+        Dimensionavel,
+        AparenciaEditavel {
 
     protected Image imagem;
     protected JLabel imagemLabel;
     protected String URL = "";
     protected Boolean importouImagem = false;
+
+    //<editor-fold defaultstate="collapsed" desc="Atributos: Auxiliares">
+    private Cor corTemp = Cor.TRANSPARENTE;
+    private Border borda;
+    //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Construtores">
     /**
@@ -228,16 +236,23 @@ public class ImagemBitmap implements ComponenteDePainelConteudo, Posicionavel, D
     public boolean isImportouImagem() {
         return importouImagem;
     }
-    
-    public void setTextoDeRotulo(String novoTexto){
+
+    public void setTextoDeRotulo(String novoTexto) {
         imagemLabel.setText(novoTexto);
     }
-    
-    public void mudarPosicaoTextoDeRotulo(Boolean ficarLadoDireito){
+
+    public void mudarPosicaoTextoDeRotulo(Boolean ficarLadoDireito) {
         imagemLabel.setHorizontalAlignment(0);
     }
     //</editor-fold>
-
+    
+    //<editor-fold defaultstate="collapsed" desc="Métodos: ComponenteDePainelConteudo">
+    @Override
+    public JComponent getObjetoJComponent() {
+        return imagemLabel;
+    }
+    //</editor-fold>
+    
     //<editor-fold defaultstate="collapsed" desc="Métodos: Posicionavel">
     @Override
     public void setPosicao(Integer novoX, Integer novoY) {
@@ -368,11 +383,103 @@ public class ImagemBitmap implements ComponenteDePainelConteudo, Posicionavel, D
         return -1;
     }
     //</editor-fold>
-
-    //<editor-fold defaultstate="collapsed" desc="Métodos: ComponenteDePainelConteudo">
+    
+    //<editor-fold defaultstate="collapsed" desc="Métodos: AparenciaEditavel">
     @Override
-    public JComponent getObjetoJComponent() {
-        return imagemLabel;
+    public void setCorDeFundo(String codigoCorHexa) {
+        corTemp.mudarCor(codigoCorHexa);
+        imagemLabel.setBackground(corTemp.getObjetoColor());
+    }
+
+    @Override
+    public void setCorDeFundo(Cor novaCor) {
+        imagemLabel.setBackground(novaCor.getObjetoColor());
+    }
+
+    @Override
+    public String getCorDeFundoEmCodigoHexa() {
+        return Cor.getCodigoHexadecimal(imagemLabel.getBackground());
+    }
+
+    @Override
+    public Cor getCorDeFundo() {
+        return Cor.converterObjetoColorEmCor(imagemLabel.getBackground());
+    }
+
+    @Override
+    public void setCorDaFrente(String codigoCorHexa) {
+        corTemp.mudarCor(codigoCorHexa);
+        imagemLabel.setForeground(corTemp.getObjetoColor());
+    }
+
+    @Override
+    public void setCorDaFrente(Cor novaCor) {
+        imagemLabel.setForeground(novaCor.getObjetoColor());
+    }
+
+    @Override
+    public String getCorDaFrenteEmCodigoHexa() {
+        return Cor.getCodigoHexadecimal(imagemLabel.getForeground());
+    }
+
+    @Override
+    public Cor getCorDaFrente() {
+        return Cor.converterObjetoColorEmCor(imagemLabel.getForeground());
+    }
+
+    @Override
+    public void setBorda(Integer espessura, String codigoCorHexa) {
+        corTemp.mudarCor(codigoCorHexa);
+        borda = BorderFactory.createMatteBorder(
+                espessura, espessura, espessura, espessura,
+                corTemp.getObjetoColor()
+        );
+        imagemLabel.setBorder(borda);
+    }
+
+    @Override
+    public void setBorda(Integer espessuraEsquerda, Integer espessuraDireita, Integer espessuraSuperior, Integer espessuraInferior, String codigoCorHexa) {
+        corTemp.mudarCor(codigoCorHexa);
+        borda = BorderFactory.createMatteBorder(
+                espessuraSuperior, espessuraEsquerda,
+                espessuraInferior, espessuraDireita,
+                corTemp.getObjetoColor()
+        );
+        imagemLabel.setBorder(borda);
+    }
+
+    @Override
+    public void setBorda(Integer espessura, Cor novaCor) {
+        borda = BorderFactory.createMatteBorder(
+                espessura, espessura, espessura, espessura,
+                novaCor.getObjetoColor()
+        );
+        imagemLabel.setBorder(borda);
+    }
+
+    @Override
+    public void setBorda(
+            Integer espessuraEsquerda,
+            Integer espessuraDireita,
+            Integer espessuraSuperior,
+            Integer espessuraInferior,
+            Cor novaCor
+    ) {
+        borda = BorderFactory.createMatteBorder(
+                espessuraSuperior, espessuraEsquerda,
+                espessuraInferior, espessuraDireita,
+                novaCor.getObjetoColor()
+        );
+        imagemLabel.setBorder(borda);
+    }
+
+    @Override
+    public void removerBorda() {
+        borda = BorderFactory.createMatteBorder(
+                0, 0, 0, 0,
+                Cor.TRANSPARENTE.getObjetoColor()
+        );
+        imagemLabel.setBorder(borda);
     }
     //</editor-fold>
 

@@ -19,22 +19,17 @@
 package entradasaida;
 
 import conteudojanelapersonalizada.PainelConteudo;
-import com.sun.org.apache.bcel.internal.classfile.InnerClass;
 import conteudojanelapersonalizada.Cor;
+import conteudojanelapersonalizada.padroesprojeto.AparenciaEditavel;
 import conteudojanelapersonalizada.padroesprojeto.Dimensionavel;
 import conteudojanelapersonalizada.padroesprojeto.Posicionavel;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Frame;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsDevice;
-import java.awt.Rectangle;
-import java.awt.Toolkit;
-import java.awt.geom.AffineTransform;
-import java.awt.image.ColorModel;
-import java.util.ArrayList;
+import java.awt.*;
+import java.awt.geom.*;
+import java.awt.image.*;
 import java.util.List;
-import javax.swing.JFrame;
+import java.util.*;
+import javax.swing.*;
+import javax.swing.border.*;
 
 /**
  * Descrição de <code>JanelaPersonalizada</code>.
@@ -47,11 +42,19 @@ import javax.swing.JFrame;
  * @author Tiago Penha Pedroso
  * @version 1.0
  */
-public class JanelaPersonalizada implements Posicionavel, Dimensionavel {
+public class JanelaPersonalizada implements 
+        Posicionavel, 
+        Dimensionavel,
+        AparenciaEditavel {
 
     private volatile Janela janela;
     private List<PainelConteudo> paineis;
+        
+    //<editor-fold defaultstate="collapsed" desc="Atributos: Auxiliares">
     private Integer indicePainelConteudoVisivel = -1;
+    private Cor corTemp = Cor.TRANSPARENTE;
+    private Border borda;
+    //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Construtores">
     public JanelaPersonalizada() {
@@ -144,17 +147,12 @@ public class JanelaPersonalizada implements Posicionavel, Dimensionavel {
         return (double) d.width / (double) d.height;
     }
     //</editor-fold>
-
-    public void setCorDeFundo(String codigoHexaCor) {
-        Cor novaCor = new Cor(codigoHexaCor);
-        janela.setBackground(novaCor.getObjetoColor());
-    }
     
-    public JFrame getJFrame(){
+    public JFrame getObjetoJFrame(){
         return janela;
     }
 
-    //<editor-fold defaultstate="collapsed" desc="Métodos: controle do List<PainelConteudo>">
+    //<editor-fold defaultstate="collapsed" desc="Métodos: Gerenciadores de PainelConteudo">
     public void adicionarPainelConteudo(PainelConteudo... novosPaineis) {
         for (PainelConteudo painel : novosPaineis) {
             janela.setContentPane(painel.getObjetoJPanel());
@@ -394,6 +392,105 @@ public class JanelaPersonalizada implements Posicionavel, Dimensionavel {
     @Override
     public Integer getDimensaoAltura() {
         return janela.getHeight();
+    }
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Métodos: AparenciaEditavel">
+    @Override
+    public void setCorDeFundo(String codigoCorHexa) {
+        corTemp.mudarCor(codigoCorHexa);
+        janela.setBackground(corTemp.getObjetoColor());
+    }
+
+    @Override
+    public void setCorDeFundo(Cor novaCor) {
+        janela.setBackground(novaCor.getObjetoColor());
+    }
+
+    @Override
+    public String getCorDeFundoEmCodigoHexa() {
+        return Cor.getCodigoHexadecimal(janela.getBackground());
+    }
+
+    @Override
+    public Cor getCorDeFundo() {
+        return Cor.converterObjetoColorEmCor(janela.getBackground());
+    }
+
+    @Override
+    public void setCorDaFrente(String codigoCorHexa) {
+        corTemp.mudarCor(codigoCorHexa);
+        janela.setForeground(corTemp.getObjetoColor());
+    }
+
+    @Override
+    public void setCorDaFrente(Cor novaCor) {
+        janela.setForeground(novaCor.getObjetoColor());
+    }
+
+    @Override
+    public String getCorDaFrenteEmCodigoHexa() {
+        return Cor.getCodigoHexadecimal(janela.getForeground());
+    }
+
+    @Override
+    public Cor getCorDaFrente() {
+        return Cor.converterObjetoColorEmCor(janela.getForeground());
+    }
+
+    @Override
+    public void setBorda(Integer espessura, String codigoCorHexa) {
+        corTemp.mudarCor(codigoCorHexa);
+        borda = BorderFactory.createMatteBorder(
+                espessura, espessura, espessura, espessura,
+                corTemp.getObjetoColor()
+        );
+        getPainelConteudoVisivel().getObjetoJPanel().setBorder(borda);
+    }
+
+    @Override
+    public void setBorda(Integer espessuraEsquerda, Integer espessuraDireita, Integer espessuraSuperior, Integer espessuraInferior, String codigoCorHexa) {
+        corTemp.mudarCor(codigoCorHexa);
+        borda = BorderFactory.createMatteBorder(
+                espessuraSuperior, espessuraEsquerda,
+                espessuraInferior, espessuraDireita,
+                corTemp.getObjetoColor()
+        );
+        getPainelConteudoVisivel().getObjetoJPanel().setBorder(borda);
+    }
+
+    @Override
+    public void setBorda(Integer espessura, Cor novaCor) {
+        borda = BorderFactory.createMatteBorder(
+                espessura, espessura, espessura, espessura,
+                novaCor.getObjetoColor()
+        );
+        getPainelConteudoVisivel().getObjetoJPanel().setBorder(borda);
+    }
+
+    @Override
+    public void setBorda(
+            Integer espessuraEsquerda,
+            Integer espessuraDireita,
+            Integer espessuraSuperior,
+            Integer espessuraInferior,
+            Cor novaCor
+    ) {
+        borda = BorderFactory.createMatteBorder(
+                espessuraSuperior, espessuraEsquerda,
+                espessuraInferior, espessuraDireita,
+                novaCor.getObjetoColor()
+        );
+        getPainelConteudoVisivel().getObjetoJPanel().setBorder(borda);
+    }
+
+    @Override
+    public void removerBorda() {
+        borda = BorderFactory.createMatteBorder(
+                0, 0, 0, 0,
+                Cor.TRANSPARENTE.getObjetoColor()
+        );
+        getPainelConteudoVisivel().getObjetoJPanel().setBorder(borda);
     }
     //</editor-fold>
 

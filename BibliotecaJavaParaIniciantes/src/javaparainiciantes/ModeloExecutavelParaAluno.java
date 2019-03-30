@@ -6,7 +6,8 @@ import static entradasaida.Conversoes.*;
 import entradasaida.JanelaPersonalizada;
 import conteudojanelapersonalizada.*;
 import ferramentas.*;
-import java.util.ArrayList;
+import java.util.*;
+import java.math.BigDecimal;
 
 public class ModeloExecutavelParaAluno {
 

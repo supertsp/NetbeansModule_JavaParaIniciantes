@@ -18,7 +18,6 @@
 //</editor-fold>
 package conteudojanelapersonalizada;
 
-import com.sun.org.apache.xml.internal.resolver.Catalog;
 import java.awt.Font;
 
 /**
