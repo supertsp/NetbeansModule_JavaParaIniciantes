@@ -1,0 +1,46 @@
+OptionPane.,
+
+
+OptionPane.disabled=javax.swing.plaf.nimbus.NimbusLookAndFeel$NimbusProperty@a71218c,
+OptionPane: "OptionPane.messageArea": "OptionPane.label".contentMargins=javax.swing.plaf.InsetsUIResource[top=0,left=10,bottom=10,right=10],
+OptionPane: "OptionPane.separator".contentMargins=javax.swing.plaf.InsetsUIResource[top=1,left=0,bottom=0,right=0],
+OptionPane.contentMargins=javax.swing.plaf.InsetsUIResource[top=15,left=15,bottom=15,right=15],
+OptionPane.opaque=true,
+OptionPane.background=javax.swing.plaf.nimbus.NimbusLookAndFeel$NimbusProperty@29dfd4bf,
+OptionPane.warningIcon=javax.swing.plaf.nimbus.NimbusIcon@aab8f4d,
+OptionPane.disabledText=javax.swing.plaf.nimbus.NimbusLookAndFeel$NimbusProperty@784612fc,
+OptionPane.windowBindings=[Ljava.lang.Object;@5b3f2411, ...],
+OptionPane.questionIcon=javax.swing.plaf.nimbus.NimbusIcon@63df6549,
+OptionPane.sameSizeButtons=false, 
+OptionPane: "OptionPane.messageArea".contentMargins=javax.swing.plaf.InsetsUIResource[top=0,left=0,bottom=10,right=0],
+OptionPane.separatorPadding=0,
+OptionPane.foreground=javax.swing.plaf.nimbus.NimbusLookAndFeel$NimbusProperty@682d9ef3, 
+OptionPane[Enabled].warningIconPainter=javax.swing.plaf.nimbus.NimbusDefaults$LazyPainter@67ce2924,
+OptionPane: "OptionPane.messageArea": "OptionPane.label"[Enabled].backgroundPainter=javax.swing.plaf.nimbus.NimbusDefaults$LazyPainter@435475be, 
+OptionPane.informationIcon=javax.swing.plaf.nimbus.NimbusIcon@47e07fa9, 
+OptionPane.isYesLast=false, 
+OptionPane[Enabled].errorIconPainter=javax.swing.plaf.nimbus.NimbusDefaults$LazyPainter@2a346f40, 
+OptionPane.font=javax.swing.plaf.nimbus.NimbusLookAndFeel$NimbusProperty@4d76f8db, 
+ColorChooser: "ColorChooser.previewPanelHolder": "OptionPane.label".contentMargins=javax.swing.plaf.InsetsUIResource[top=0,left=10,bottom=10,right=10],
+OptionPane.messageAnchor=17, List.focusCellHighlightBorder=javax.swing.plaf.BorderUIResource@4c38fd66, 
+
+Tree.textBackground=DerivedColor(color=255,255,255
+List[Disabled+Selected].textBackground=DerivedColor(color=57,105,138
+Table[Disabled+Selected].textBackground=DerivedColor(color=57,105,138
+List[Selected].textBackground=DerivedColor(color=57,105,138
+Table[Enabled+Selected].textBackground=DerivedColor(color=57,105,138
+textBackground=DerivedColor(color=57,105,138
+Tree.textBackground=DerivedColor(color=255,255,255
+
+DesktopPane.background=javax.swing.plaf.nimbus.NimbusLookAndFeel$NimbusProperty@63ebe095, 
+EditorPane.background=javax.swing.plaf.nimbus.NimbusLookAndFeel$NimbusProperty@4689aca9, 
+Label.background=javax.swing.plaf.nimbus.NimbusLookAndFeel$NimbusProperty@65816b81, 
+Button.background=javax.swing.plaf.nimbus.NimbusLookAndFeel$NimbusProperty@385d0ff7, 
+RootPane.background=DerivedColor(color=214,217,223
+TextPane.background=javax.swing.plaf.nimbus.NimbusLookAndFeel$NimbusProperty@396415a5, 
+FormattedTextField.background=javax.swing.plaf.nimbus.NimbusLookAndFeel$NimbusProperty@7e23bbe6, 
+Panel.background=javax.swing.plaf.nimbus.NimbusLookAndFeel$NimbusProperty@267e973f, 
+TextField.background=DerivedColor(color=255,255,255
+PopupMenu.background=javax.swing.plaf.nimbus.NimbusLookAndFeel$NimbusProperty@57513a89,
+TextArea.background=javax.swing.plaf.nimbus.NimbusLookAndFeel$NimbusProperty@5b82949c,
+InternalFrame.background=javax.swing.plaf.nimbus.NimbusLookAndFeel$NimbusProperty@6d95ca20, 
