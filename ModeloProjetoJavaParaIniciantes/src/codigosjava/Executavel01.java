@@ -7,17 +7,18 @@ import static java.lang.Double.parseDouble;
 import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
 import static java.lang.String.valueOf;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Executavel01 {
 
     public static void main(String[] args) {
         println("\n\n\n  [Início] :) -----------------------------------------------------------------------------------------------------------\n\n");
 // </editor-fold>        
-        //seu códgio a partir daqui ;)
+        //seu código começa aqui =)
         
         Integer idade = lerInteger("Qual é a sua idade?");        
         escreverLinhaDeString("Então você tem " + idade + " anos e eu apenas alguns minutos ;)");
-        
         
         
         
