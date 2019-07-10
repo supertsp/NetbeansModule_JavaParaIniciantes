@@ -1,10 +1,2 @@
-/EntradaSaida/build/
-/BibliotecaJavaParaIniciantes/build/
-/BibliotecaJavaParaIniciantes/nbproject/private/
-/ModuloJavaParaIniciantes/nbproject/private/
-/BibliotecaJavaSimples/build/
-/BibliotecaJavaSimples/dist/
-/BibliotecaJavaSimples/nbproject/private/
-/ModeloProjetoJavaParaIniciantes/nbproject/private/
-/ModeloProjetoJavaParaIniciantes/build/
-/ModuloJavaParaIniciantes/build/
+**/build/
+/ModuloJavaParaIniciantes2/nbproject/private/
