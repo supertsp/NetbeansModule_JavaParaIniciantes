@@ -69,9 +69,9 @@ public class AppSimplesWizardPanel implements WizardDescriptor.Panel,
             ls = new HashSet<>(listeners);
         }
         ChangeEvent ev = new ChangeEvent(this);
-        ls.forEach((l) -> {
+        for (ChangeListener l : ls) {
             l.stateChanged(ev);
-        });
+        }
     }
 
     @Override

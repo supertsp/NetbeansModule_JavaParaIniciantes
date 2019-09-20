@@ -42,6 +42,11 @@ public class AppSimplesPanelVisual extends JPanel implements DocumentListener {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        topPanel = new javax.swing.JPanel();
+        labelBemVindo = new javax.swing.JLabel();
+        labelAoNovoJeito = new javax.swing.JLabel();
+        labelAoNovoJeito1 = new javax.swing.JLabel();
+        bottonPanel = new javax.swing.JPanel();
         projectNameLabel = new javax.swing.JLabel();
         projectNameTextField = new javax.swing.JTextField();
         projectLocationLabel = new javax.swing.JLabel();
@@ -49,21 +54,62 @@ public class AppSimplesPanelVisual extends JPanel implements DocumentListener {
         browseButton = new javax.swing.JButton();
         createdFolderLabel = new javax.swing.JLabel();
         createdFolderTextField = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        titleLabel = new javax.swing.JLabel();
-        titleLabel1 = new javax.swing.JLabel();
-        titleLabel2 = new javax.swing.JLabel();
 
-        projectNameLabel.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
-        projectNameLabel.setForeground(new java.awt.Color(204, 204, 204));
-        projectNameLabel.setLabelFor(projectLocationTextField);
+        topPanel.setBackground(new java.awt.Color(51, 51, 51));
+
+        labelBemVindo.setFont(new java.awt.Font("Dialog", 1, 22)); // NOI18N
+        labelBemVindo.setForeground(new java.awt.Color(187, 187, 188));
+        labelBemVindo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        org.openide.awt.Mnemonics.setLocalizedText(labelBemVindo, org.openide.util.NbBundle.getMessage(AppSimplesPanelVisual.class, "AppSimplesPanelVisual.labelBemVindo.text")); // NOI18N
+
+        labelAoNovoJeito.setFont(new java.awt.Font("Dialog", 1, 22)); // NOI18N
+        labelAoNovoJeito.setForeground(new java.awt.Color(187, 187, 188));
+        labelAoNovoJeito.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        org.openide.awt.Mnemonics.setLocalizedText(labelAoNovoJeito, org.openide.util.NbBundle.getMessage(AppSimplesPanelVisual.class, "AppSimplesPanelVisual.labelAoNovoJeito.text")); // NOI18N
+
+        labelAoNovoJeito1.setFont(new java.awt.Font("Dialog", 1, 22)); // NOI18N
+        labelAoNovoJeito1.setForeground(new java.awt.Color(84, 157, 121));
+        labelAoNovoJeito1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        org.openide.awt.Mnemonics.setLocalizedText(labelAoNovoJeito1, org.openide.util.NbBundle.getMessage(AppSimplesPanelVisual.class, "AppSimplesPanelVisual.labelAoNovoJeito1.text")); // NOI18N
+
+        javax.swing.GroupLayout topPanelLayout = new javax.swing.GroupLayout(topPanel);
+        topPanel.setLayout(topPanelLayout);
+        topPanelLayout.setHorizontalGroup(
+            topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(topPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelBemVindo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelAoNovoJeito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelAoNovoJeito1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        topPanelLayout.setVerticalGroup(
+            topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(topPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelBemVindo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelAoNovoJeito)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelAoNovoJeito1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        bottonPanel.setBackground(new java.awt.Color(60, 63, 67));
+
+        projectNameLabel.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        projectNameLabel.setForeground(new java.awt.Color(187, 187, 186));
+        projectNameLabel.setLabelFor(projectNameTextField);
         org.openide.awt.Mnemonics.setLocalizedText(projectNameLabel, org.openide.util.NbBundle.getMessage(AppSimplesPanelVisual.class, "AppSimplesPanelVisual.projectNameLabel.text")); // NOI18N
 
-        projectLocationLabel.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
-        projectLocationLabel.setForeground(new java.awt.Color(204, 204, 204));
+        projectLocationLabel.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        projectLocationLabel.setForeground(new java.awt.Color(187, 187, 186));
         projectLocationLabel.setLabelFor(projectLocationTextField);
         org.openide.awt.Mnemonics.setLocalizedText(projectLocationLabel, org.openide.util.NbBundle.getMessage(AppSimplesPanelVisual.class, "AppSimplesPanelVisual.projectLocationLabel.text")); // NOI18N
 
+        browseButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        browseButton.setForeground(new java.awt.Color(187, 187, 186));
         org.openide.awt.Mnemonics.setLocalizedText(browseButton, org.openide.util.NbBundle.getMessage(AppSimplesPanelVisual.class, "AppSimplesPanelVisual.browseButton.text")); // NOI18N
         browseButton.setActionCommand(org.openide.util.NbBundle.getMessage(AppSimplesPanelVisual.class, "AppSimplesPanelVisual.browseButton.actionCommand")); // NOI18N
         browseButton.addActionListener(new java.awt.event.ActionListener() {
@@ -72,98 +118,68 @@ public class AppSimplesPanelVisual extends JPanel implements DocumentListener {
             }
         });
 
-        createdFolderLabel.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
-        createdFolderLabel.setForeground(new java.awt.Color(204, 204, 204));
+        createdFolderLabel.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        createdFolderLabel.setForeground(new java.awt.Color(187, 187, 186));
         createdFolderLabel.setLabelFor(createdFolderTextField);
         org.openide.awt.Mnemonics.setLocalizedText(createdFolderLabel, org.openide.util.NbBundle.getMessage(AppSimplesPanelVisual.class, "AppSimplesPanelVisual.createdFolderLabel.text")); // NOI18N
 
         createdFolderTextField.setEditable(false);
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-
-        titleLabel.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel.setLabelFor(projectNameTextField);
-        org.openide.awt.Mnemonics.setLocalizedText(titleLabel, org.openide.util.NbBundle.getMessage(AppSimplesPanelVisual.class, "AppSimplesPanelVisual.titleLabel.text")); // NOI18N
-
-        titleLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        titleLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel1.setLabelFor(projectNameTextField);
-        org.openide.awt.Mnemonics.setLocalizedText(titleLabel1, org.openide.util.NbBundle.getMessage(AppSimplesPanelVisual.class, "AppSimplesPanelVisual.titleLabel1.text")); // NOI18N
-
-        titleLabel2.setFont(new java.awt.Font("Dialog", 1, 28)); // NOI18N
-        titleLabel2.setForeground(new java.awt.Color(0, 204, 102));
-        titleLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel2.setLabelFor(projectNameTextField);
-        org.openide.awt.Mnemonics.setLocalizedText(titleLabel2, org.openide.util.NbBundle.getMessage(AppSimplesPanelVisual.class, "AppSimplesPanelVisual.titleLabel2.text")); // NOI18N
-        titleLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(titleLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(titleLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        javax.swing.GroupLayout bottonPanelLayout = new javax.swing.GroupLayout(bottonPanel);
+        bottonPanel.setLayout(bottonPanelLayout);
+        bottonPanelLayout.setHorizontalGroup(
+            bottonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bottonPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(bottonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(projectNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
+                    .addGroup(bottonPanelLayout.createSequentialGroup()
+                        .addComponent(projectLocationTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(browseButton))
+                    .addComponent(createdFolderTextField)
+                    .addGroup(bottonPanelLayout.createSequentialGroup()
+                        .addGroup(bottonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(projectNameLabel)
+                            .addComponent(projectLocationLabel)
+                            .addComponent(createdFolderLabel))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(titleLabel)
-                .addGap(3, 3, 3)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(titleLabel2))
-                    .addComponent(titleLabel1)))
+        bottonPanelLayout.setVerticalGroup(
+            bottonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bottonPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(projectNameLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(projectNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(projectLocationLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(bottonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(projectLocationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(browseButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(createdFolderLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(createdFolderTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(projectNameLabel)
-                    .addComponent(projectNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(projectLocationLabel)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(projectLocationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(browseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(createdFolderLabel)
-                    .addComponent(createdFolderTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(topPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(bottonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(projectNameLabel)
-                .addGap(6, 6, 6)
-                .addComponent(projectNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(projectLocationLabel)
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(projectLocationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(browseButton))
-                .addGap(18, 18, 18)
-                .addComponent(createdFolderLabel)
-                .addGap(6, 6, 6)
-                .addComponent(createdFolderTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(topPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bottonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -171,8 +187,7 @@ public class AppSimplesPanelVisual extends JPanel implements DocumentListener {
         String command = evt.getActionCommand();
         if ("BROWSE".equals(command)) {
             JFileChooser chooser = new JFileChooser();
-//            FileUtil.preventFileChooserSymlinkTraversal(chooser, null);
-            chooser.setCurrentDirectory(chooser.getCurrentDirectory());
+            FileUtil.preventFileChooserSymlinkTraversal(chooser, null);
             chooser.setDialogTitle("Select Project Location");
             chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             String path = this.projectLocationTextField.getText();
@@ -192,17 +207,18 @@ public class AppSimplesPanelVisual extends JPanel implements DocumentListener {
     }//GEN-LAST:event_browseButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bottonPanel;
     private javax.swing.JButton browseButton;
     private javax.swing.JLabel createdFolderLabel;
     private javax.swing.JTextField createdFolderTextField;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel labelAoNovoJeito;
+    private javax.swing.JLabel labelAoNovoJeito1;
+    private javax.swing.JLabel labelBemVindo;
     private javax.swing.JLabel projectLocationLabel;
     private javax.swing.JTextField projectLocationTextField;
     private javax.swing.JLabel projectNameLabel;
     private javax.swing.JTextField projectNameTextField;
-    private javax.swing.JLabel titleLabel;
-    private javax.swing.JLabel titleLabel1;
-    private javax.swing.JLabel titleLabel2;
+    private javax.swing.JPanel topPanel;
     // End of variables declaration//GEN-END:variables
 
     @Override

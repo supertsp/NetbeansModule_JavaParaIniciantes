@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.tiagopedroso.javaparainiciantes;
 
 import java.awt.Component;
@@ -39,7 +34,7 @@ import org.xml.sax.InputSource;
 
 // TODO define position attribute
 @TemplateRegistration(folder = "Project/Java", displayName = "#AppSimples_displayName", description = "AppSimplesDescription.html", iconBase = "br/com/tiagopedroso/javaparainiciantes/AppSimples.png", content = "AppSimplesProject.zip")
-@Messages("AppSimples_displayName=Java para Iniciantes")
+@Messages("AppSimples_displayName=Java para Treinar")
 public class AppSimplesWizardIterator implements WizardDescriptor./*Progress*/InstantiatingIterator {
 
     private int index;
@@ -66,7 +61,7 @@ public class AppSimplesWizardIterator implements WizardDescriptor./*Progress*/In
 
     @Override
     public Set/*<FileObject>*/ instantiate(/*ProgressHandle handle*/) throws IOException {
-        Set<FileObject> resultSet = new LinkedHashSet<FileObject>();
+        Set<FileObject> resultSet = new LinkedHashSet<>();
         File dirF = FileUtil.normalizeFile((File) wiz.getProperty("projdir"));
         dirF.mkdirs();
 
@@ -112,7 +107,7 @@ public class AppSimplesWizardIterator implements WizardDescriptor./*Progress*/In
                 JComponent jc = (JComponent) c;
                 // Step #.
                 // TODO if using org.openide.dialogs >= 7.8, can use WizardDescriptor.PROP_*:
-                jc.putClientProperty("WizardPanel_contentSelectedIndex", i);
+                jc.putClientProperty("WizardPanel_contentSelectedIndex", new Integer(i));
                 // Step name (actually the whole list for reference).
                 jc.putClientProperty("WizardPanel_contentData", steps);
             }
@@ -130,7 +125,7 @@ public class AppSimplesWizardIterator implements WizardDescriptor./*Progress*/In
     @Override
     public String name() {
         return MessageFormat.format("{0} of {1}",
-                new Object[]{index + 1, panels.length});
+                new Object[]{new Integer(index + 1), new Integer(panels.length)});
     }
 
     @Override

@@ -1,5 +1,5 @@
-// <editor-fold defaultstate="collapsed" desc="cabeçalho de código...">
-package codigosjava; //esse é nome da "pasta" que seu código está, pois assim tudo fica mais organizado
+//<editor-fold defaultstate="collapsed" desc="cabeçalho de código...">
+package listaexercicios; //esse é nome da "pasta" que seu código está, pois assim tudo fica mais organizado
 
 import static entradasaida.JanelaPopup.*;
 import static ferramentas.Conversoes.*;
@@ -10,11 +10,11 @@ import static java.lang.String.valueOf;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Executavel01 {
+public class Exercicio101 {
 
     public static void main(String[] args) {
         println("\n\n\n  [Início] :) -----------------------------------------------------------------------------------------------------------\n\n");
-// </editor-fold>        
+//</editor-fold>        
         //seu código começa aqui =)
         
         Integer idade = lerInteger("Qual é a sua idade?");        
@@ -24,8 +24,8 @@ public class Executavel01 {
         
         
         //seu código termina aqui :0     
-// <editor-fold defaultstate="collapsed" desc="rodapé de código...">
-        println("\n\n\n     [Fim] :) -----------------------------------------------------------------------------------------------------------\n\n");
+//<editor-fold defaultstate="collapsed" desc="rodapé de código...">
+        println("\n\n\n     [Fim] :0 -----------------------------------------------------------------------------------------------------------\n\n");
     }//métdo main
 }//classe Executavel
-// </editor-fold>
+//</editor-fold>
